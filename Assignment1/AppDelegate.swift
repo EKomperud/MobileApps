@@ -12,11 +12,35 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    private var _light: UIImageView? = nil
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow()
+        window?.rootViewController = ViewController()
+        window?.rootViewController?.view.backgroundColor = UIColor.greenColor()
+        window?.makeKeyAndVisible()
+        
+        _light = UIImageView()
+        _light?.backgroundColor = UIColor.redColor()
+        _light?.frame = CGRect(x: 100, y: 300, width: 100, height: 150)
+        _light?.image = UIImage(named: "imgres")
+        window?.rootViewController?.view.addSubview(_light!)
+        
+        let lightSwitch: UISwitch = UISwitch()
+        lightSwitch.frame = CGRect(x: 50, y: 50, width: 50, height: 75)
+        lightSwitch.addTarget(self, action: #selector(lightSwitchChanged), forControlEvents: UIControlEvents.ValueChanged)
+        window?.rootViewController?.view.addSubview(lightSwitch)
+        
+        print("Welcome to HELL, World!")
+        
         return true
+    }
+    
+    func lightSwitchChanged() {
+        print("GATES TO HELL HAVE BEEN OPENED")
+        
+        _light?.image = UIImage(named: "url")
     }
 
     func applicationWillResignActive(application: UIApplication) {
