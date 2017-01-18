@@ -9,18 +9,14 @@
 /* Begin PBXBuildFile section */
 		E315A1E21E244BEA0021C77F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E315A1E11E244BEA0021C77F /* AppDelegate.swift */; };
 		E315A1E41E244BEA0021C77F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E315A1E31E244BEA0021C77F /* ViewController.swift */; };
-		E315A1E71E244BEA0021C77F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E315A1E51E244BEA0021C77F /* Main.storyboard */; };
 		E315A1E91E244BEA0021C77F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E315A1E81E244BEA0021C77F /* Assets.xcassets */; };
-		E315A1EC1E244BEA0021C77F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E315A1EA1E244BEA0021C77F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E315A1DE1E244BEA0021C77F /* Assignment1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E315A1E11E244BEA0021C77F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E315A1E31E244BEA0021C77F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E315A1E61E244BEA0021C77F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E315A1E81E244BEA0021C77F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E315A1EB1E244BEA0021C77F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E315A1ED1E244BEA0021C77F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,9 +52,7 @@
 			children = (
 				E315A1E11E244BEA0021C77F /* AppDelegate.swift */,
 				E315A1E31E244BEA0021C77F /* ViewController.swift */,
-				E315A1E51E244BEA0021C77F /* Main.storyboard */,
 				E315A1E81E244BEA0021C77F /* Assets.xcassets */,
-				E315A1EA1E244BEA0021C77F /* LaunchScreen.storyboard */,
 				E315A1ED1E244BEA0021C77F /* Info.plist */,
 			);
 			path = Assignment1;
@@ -96,6 +90,7 @@
 				TargetAttributes = {
 					E315A1DD1E244BEA0021C77F = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -122,9 +117,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E315A1EC1E244BEA0021C77F /* LaunchScreen.storyboard in Resources */,
 				E315A1E91E244BEA0021C77F /* Assets.xcassets in Resources */,
-				E315A1E71E244BEA0021C77F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,25 +134,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E315A1E51E244BEA0021C77F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E315A1E61E244BEA0021C77F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E315A1EA1E244BEA0021C77F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E315A1EB1E244BEA0021C77F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E315A1EE1E244BEA0021C77F /* Debug */ = {
@@ -255,6 +229,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CS4530.Assignment1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -266,6 +241,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CS4530.Assignment1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -288,6 +264,7 @@
 				E315A1F21E244BEA0021C77F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
