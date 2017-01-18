@@ -27,18 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController?.view.backgroundColor = UIColor.lightGray
         window?.makeKeyAndVisible()
         
-        _light = UIImageView()
-        _light?.backgroundColor = UIColor.red
-        _light?.frame = CGRect(x: 100, y: 300, width: 100, height: 150)
-        _light?.image = UIImage(named: "imgres")
-        //window?.rootViewController?.view.addSubview(_light!)
+        //Legacy code from class
         
-        let lightSwitch: UISwitch = UISwitch()
-        lightSwitch.frame = CGRect(x: 50, y: 50, width: 50, height: 75)
-        lightSwitch.addTarget(self, action: #selector(lightSwitchChanged), for: UIControlEvents.valueChanged)
-        //window?.rootViewController?.view.addSubview(lightSwitch)
+//        _light = UIImageView()
+//        _light?.backgroundColor = UIColor.red
+//        _light?.frame = CGRect(x: 100, y: 300, width: 100, height: 150)
+//        _light?.image = UIImage(named: "imgres")
+//        //window?.rootViewController?.view.addSubview(_light!)
+//        
+//        let lightSwitch: UISwitch = UISwitch()
+//        lightSwitch.frame = CGRect(x: 50, y: 50, width: 50, height: 75)
+//        lightSwitch.addTarget(self, action: #selector(lightSwitchChanged), for: UIControlEvents.valueChanged)
+//        //window?.rootViewController?.view.addSubview(lightSwitch)
         
-        //let xSlider: UISlider = UISlider()
+        // xSlider
         xSlider.frame = CGRect(x:25, y:100, width:200, height: 50)
         xSlider.center.x = (window?.center.x)!
         xSlider.center.y = (window?.center.y)! - 50
@@ -47,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         xSlider.addTarget(self, action: #selector(sliderChanged), for: UIControlEvents.valueChanged)
         window?.rootViewController?.view.addSubview(xSlider)
         
-        //let ySlider: UISlider = UISlider()
+        // ySlider
         ySlider.frame = CGRect(x:25, y:200, width:200, height: 50)
         ySlider.center.x = (window?.center.x)!
         ySlider.center.y = (window?.center.y)!
@@ -56,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ySlider.addTarget(self, action: #selector(sliderChanged), for: UIControlEvents.valueChanged)
         window?.rootViewController?.view.addSubview(ySlider)
         
+        // xLabel
         let xLabel: UILabel = UILabel()
         xLabel.frame = CGRect(x:0, y:0, width: 50, height: 50)
         xLabel.center.x = (window?.center.x)! - 115
@@ -63,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         xLabel.text = "X"
         window?.rootViewController?.view.addSubview(xLabel)
 
+        // yLabel
         let yLabel: UILabel = UILabel()
         yLabel.frame = CGRect(x:0, y:0, width: 50, height: 50)
         yLabel.center.x = (window?.center.x)! - 115
@@ -70,21 +74,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         yLabel.text = "Y"
         window?.rootViewController?.view.addSubview(yLabel)
         
-        //let xValue: UILabel = UILabel()
+        // xValue
         xValue.frame = CGRect(x:0, y:0, width: 100, height: 50)
         xValue.center.x = (window?.center.x)! + 160
         xValue.center.y = (window?.center.y)! - 50
         xValue.text = "0.0"
         window?.rootViewController?.view.addSubview(xValue)
         
-        //let yValue: UILabel = UILabel()
+        // yValue
         yValue.frame = CGRect(x:0, y:0, width: 100, height: 50)
         yValue.center.x = (window?.center.x)! + 160
         yValue.center.y = (window?.center.y)!
         yValue.text = "0.0"
         window?.rootViewController?.view.addSubview(yValue)
         
-        //let addition: UILabel = UILabel()
+        // Addition label
         addition.frame = CGRect(x:0, y:0, width: 300, height: 50)
         addition.center.x = (window?.center.x)!
         addition.center.y = (window?.center.y)! + 50
@@ -92,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addition.textAlignment = .center
         window?.rootViewController?.view.addSubview(addition)
         
-        //let multiplication: UILabel = UILabel()
+        // Multiplication label
         multiplication.frame = CGRect(x:0, y:0, width: 300, height: 50)
         multiplication.center.x = (window?.center.x)!
         multiplication.center.y = (window?.center.y)! + 100
@@ -100,16 +104,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         multiplication.textAlignment = .center
         window?.rootViewController?.view.addSubview(multiplication)
         
-        print("Welcome to HELL, World!")
-        
         return true
     }
     
-    func lightSwitchChanged() {
-        print("GATES TO HELL HAVE BEEN OPENED")
-        
-        _light?.image = UIImage(named: "url")
-    }
+//    func lightSwitchChanged() {   
+//        _light?.image = UIImage(named: "url")
+//    }
     
     func sliderChanged() {
         let addValue = xSlider.value + ySlider.value
@@ -118,10 +118,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         multiplication.text = "\(xSlider.value) * \(ySlider.value) = \(multValue)"
         xValue.text = "\(xSlider.value)"
         yValue.text = "\(ySlider.value)"
-    }
-    
-    func ySliderChanged() {
-        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
