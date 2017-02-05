@@ -19,15 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         
-        gl.colors = [UIColor.darkGray.cgColor, UIColor.black.cgColor]
-        gl.frame = CGRect(x: 0, y: 20, width: 300, height: 500)
+//        gl.colors = [UIColor.darkGray.cgColor, UIColor.black.cgColor]
+//        gl.frame = CGRect(x: 0, y: 20, width: 300, height: 500)
         
         let mainView: MainView = MainView()
-        mainView.frame = CGRect(x: 10, y: 10, width: 100, height: 150)
+        mainView.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 20.0, width: 250, height: 50)
         mainView.backgroundColor = UIColor.darkGray
-        //mainView.view.layer.add
-        
         window?.rootViewController?.view.addSubview(mainView)
+        
         //window?.rootViewController?.view.addSubview(gl)
         
         return true
