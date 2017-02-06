@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let gl: CAGradientLayer = CAGradientLayer()
+    let widthSlider: UISlider = UISlider()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
@@ -34,15 +35,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let colorSelector: ColorSelectorView = ColorSelectorView()
         colorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 230.0, width: 250, height: 50)
         
+        let brushCap: BrushCapView = BrushCapView()
+        brushCap.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 50, width: 250, height: 60)
+        
+        let brushJoin: BrushJoinView = BrushJoinView()
+        brushJoin.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 160, width: 250, height: 60)
+        
         window?.rootViewController?.view.addSubview(redColorSelector)
         window?.rootViewController?.view.addSubview(greenColorSelector)
         window?.rootViewController?.view.addSubview(blueColorSelector)
         window?.rootViewController?.view.addSubview(colorSelector)
+        window?.rootViewController?.view.addSubview(brushCap)
+        window?.rootViewController?.view.addSubview(brushJoin)
         
+        //let context = UIGraphicsGetCurrentContext()
         
-        //window?.rootViewController?.view.addSubview(gl)
+        widthSlider.frame = CGRect(x: 40, y: (window?.frame.height)! / 2, width: (window?.frame.width)! - 80, height: 30)
+        widthSlider.minimumValue = 0.5
+        widthSlider.maximumValue = 50.0
+        widthSlider.addTarget(self, action: #selector(widthSliderChanged), for: UIControlEvents.valueChanged)
+        window?.rootViewController?.view.addSubview(widthSlider)
         
         return true
+    }
+    
+    func widthSliderChanged () {
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

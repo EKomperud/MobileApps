@@ -17,7 +17,6 @@ class ColorSelectorView: UIView {
     let view = UIView(frame: CGRect(x:50, y:50, width: 200, height: 200))
     private var _sliderPosition: CGFloat = 0.0
     var ellipse = CGRect()
-    override var self.clearsContextBeforeDrawing: Bool = true
     
     override func draw(_ rect: CGRect) {
         

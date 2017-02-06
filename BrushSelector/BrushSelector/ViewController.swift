@@ -15,10 +15,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        createGradientLayer()
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        createGradientLayer()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     func createGradientLayer() {
         let gradientlayer = CAGradientLayer()
         gradientlayer.frame = self.view.bounds
-        gradientlayer.colors = [UIColor.black.cgColor, UIColor.darkGray.cgColor]
+        gradientlayer.colors = [UIColor.black.cgColor, UIColor.gray.cgColor]
         self.view.layer.addSublayer(gradientlayer)
     }
 }
