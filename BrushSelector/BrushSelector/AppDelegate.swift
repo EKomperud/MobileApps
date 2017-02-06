@@ -8,15 +8,18 @@
 
 import UIKit
 
+protocol WidthSliderDelegate: class {
+    func widthSlider(widthSlider: AppDelegate, rotatedToAngle angle: Float)
+}
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, BrushJoinDelegate, BrushCapDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
     let gl: CAGradientLayer = CAGradientLayer()
     let widthSlider: UISlider = UISlider()
     var width: Float = 0.5
-    var brushCapStyle: CGLineCap = CGLineCap.round
-    var brushJoinStyle: CGLineJoin = CGLineJoin.stroke
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
@@ -25,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BrushJoinDelegate, BrushC
         
 //        gl.colors = [UIColor.darkGray.cgColor, UIColor.black.cgColor]
 //        gl.frame = CGRect(x: 0, y: 20, width: 300, height: 500)
+        
+        let brushExample: BrushExampleView = BrushExampleView()
         
         let redColorSelector: RedSelectorView = RedSelectorView()
         redColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 20.0, width: 250, height: 50)
@@ -40,11 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BrushJoinDelegate, BrushC
         
         let brushCap: BrushCapView = BrushCapView()
         brushCap.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 50, width: 250, height: 60)
-        brushCap.delegate = self
+        brushCap.delegate = brushExample
         
         let brushJoin: BrushJoinView = BrushJoinView()
         brushJoin.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 160, width: 250, height: 60)
-        brushJoin.delegate = self
+        brushJoin.delegate = brushExample
+        
+        
+
         
         window?.rootViewController?.view.addSubview(redColorSelector)
         window?.rootViewController?.view.addSubview(greenColorSelector)
@@ -58,27 +66,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BrushJoinDelegate, BrushC
         widthSlider.frame = CGRect(x: 40, y: (window?.frame.height)! / 2, width: (window?.frame.width)! - 80, height: 30)
         widthSlider.minimumValue = 0.5
         widthSlider.maximumValue = 50.0
-        widthSlider.addTarget(self, action: #selector(widthSliderChanged), for: UIControlEvents.valueChanged)
+        widthSlider.addTarget(brushExample, action: #selector(brushExample.widthSliderChanged), for: UIControlEvents.valueChanged)
         window?.rootViewController?.view.addSubview(widthSlider)
         
         return true
     }
     
-    func widthSliderChanged () {
-        width = widthSlider.value
-    }
+
     
-    func brushCap(brushCap: BrushCapView, StylePicked style: CGLineCap) {
-        brushCapStyle = style
-    }
-    
-    func brushJoin(brushJoin: BrushJoinView, StylePicked style: CGLineJoin) {
-        brushJoinStyle = style
-    }
-    
-    func drawBrushExample() {
-        
-    }
+//    func drawBrushExample() {
+//        //context: CGContext = UIGraphicsGetCurrentContext()!
+//        context?.move(to: CGPoint(x: 50, y: (window?.bounds.height)! - 30))
+//        context?.addLine(to: CGPoint(x: 125, y: (window?.bounds.height)! - 70))
+//        context?.addLine(to: CGPoint(x: 170, y: (window?.bounds.height)! - 35))
+//        context?.addLine(to: CGPoint(x: 230, y: (window?.bounds.height)! - 60))
+//        context?.addLine(to: CGPoint(x: 300, y: (window?.bounds.height)! - 45))
+//        context?.setLineCap(brushCapStyle)
+//        context?.setLineJoin(brushJoinStyle)
+//        context?.setLineWidth(CGFloat(width))
+//        context?.drawPath(using: CGPathDrawingMode.stroke)
+//        //context.addLine(to: CGPoint(x: 400, y: (window?.bounds.height)! - 70))
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

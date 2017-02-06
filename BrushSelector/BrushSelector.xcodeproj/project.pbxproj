@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E310D6F41E49382700D37B4F /* BrushExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E310D6F31E49382700D37B4F /* BrushExampleView.swift */; };
 		E317A45D1E46CEF30000417A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E317A45C1E46CEF30000417A /* AppDelegate.swift */; };
 		E317A45F1E46CEF30000417A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E317A45E1E46CEF30000417A /* ViewController.swift */; };
 		E317A4621E46CEF30000417A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E317A4601E46CEF30000417A /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E310D6F31E49382700D37B4F /* BrushExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushExampleView.swift; sourceTree = "<group>"; };
 		E317A4591E46CEF30000417A /* BrushSelector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrushSelector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E317A45C1E46CEF30000417A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E317A45E1E46CEF30000417A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				E3BF1CE21E4859FA00C6AC4B /* ColorSelectorView.swift */,
 				E36BAC611E4918300024001D /* BrushCapView.swift */,
 				E36BAC631E4921090024001D /* BrushJoinView.swift */,
+				E310D6F31E49382700D37B4F /* BrushExampleView.swift */,
 			);
 			path = BrushSelector;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				E317A46F1E46D5170000417A /* RedSelectorView.swift in Sources */,
 				E36BAC621E4918300024001D /* BrushCapView.swift in Sources */,
 				E317A45D1E46CEF30000417A /* AppDelegate.swift in Sources */,
+				E310D6F41E49382700D37B4F /* BrushExampleView.swift in Sources */,
 				E3BF1CE11E48569700C6AC4B /* BlueSelectorView.swift in Sources */,
 				E36BAC641E4921090024001D /* BrushJoinView.swift in Sources */,
 				E3BF1CE31E4859FA00C6AC4B /* ColorSelectorView.swift in Sources */,
