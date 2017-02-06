@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol BrushCapDelegate: class {
+    func brushCap(brushCap: BrushCapView, StylePicked style: CGLineCap)
+}
+
 class BrushCapView: UIView {
     
     private var _choice: CShort = 0
+    
+    weak var delegate: BrushCapDelegate? = nil
     
     override func draw(_ rect: CGRect) {
         let context: CGContext = UIGraphicsGetCurrentContext()!
@@ -66,12 +72,15 @@ class BrushCapView: UIView {
         
         if (x < 91.25) {
             choice = 0
+            delegate?.brushCap(brushCap: self, StylePicked: CGLineCap.round)
         }
         else if (x >= 91.25 && x < 158.25) {
             choice = 1
+            delegate?.brushCap(brushCap: self, StylePicked: CGLineCap.square)
         }
         else {
             choice = 2
+            delegate?.brushCap(brushCap: self, StylePicked: CGLineCap.butt)
         }
     }
     

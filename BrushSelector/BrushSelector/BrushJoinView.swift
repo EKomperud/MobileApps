@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol BrushJoinDelegate: class {
+    func brushJoin(brushJoin: BrushJoinView, StylePicked style: CGLineJoin)
+}
+
 class BrushJoinView: UIView {
     
     private var _choice: CShort = 0
+    
+    weak var delegate: BrushJoinDelegate? = nil
     
     override func draw(_ rect: CGRect) {
         let context: CGContext = UIGraphicsGetCurrentContext()!
@@ -66,13 +72,17 @@ class BrushJoinView: UIView {
         
         if (x < 91.25) {
             choice = 0
+            delegate?.brushJoin(brushJoin: self, StylePicked: CGLineJoin.bevel)
         }
         else if (x >= 91.25 && x < 158.25) {
             choice = 1
+            delegate?.brushJoin(brushJoin: self, StylePicked: CGLineJoin.miter)
         }
         else {
             choice = 2
+            delegate?.brushJoin(brushJoin: self, StylePicked: CGLineJoin.round)
         }
+        
     }
     
     var choice : CShort {

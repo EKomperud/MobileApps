@@ -9,11 +9,14 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, BrushJoinDelegate, BrushCapDelegate {
 
     var window: UIWindow?
     let gl: CAGradientLayer = CAGradientLayer()
     let widthSlider: UISlider = UISlider()
+    var width: Float = 0.5
+    var brushCapStyle: CGLineCap = CGLineCap.round
+    var brushJoinStyle: CGLineJoin = CGLineJoin.stroke
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
@@ -37,9 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let brushCap: BrushCapView = BrushCapView()
         brushCap.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 50, width: 250, height: 60)
+        brushCap.delegate = self
         
         let brushJoin: BrushJoinView = BrushJoinView()
         brushJoin.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 160, width: 250, height: 60)
+        brushJoin.delegate = self
         
         window?.rootViewController?.view.addSubview(redColorSelector)
         window?.rootViewController?.view.addSubview(greenColorSelector)
@@ -60,6 +65,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func widthSliderChanged () {
+        width = widthSlider.value
+    }
+    
+    func brushCap(brushCap: BrushCapView, StylePicked style: CGLineCap) {
+        brushCapStyle = style
+    }
+    
+    func brushJoin(brushJoin: BrushJoinView, StylePicked style: CGLineJoin) {
+        brushJoinStyle = style
+    }
+    
+    func drawBrushExample() {
         
     }
 
