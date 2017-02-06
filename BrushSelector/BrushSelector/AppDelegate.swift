@@ -22,10 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        gl.colors = [UIColor.darkGray.cgColor, UIColor.black.cgColor]
 //        gl.frame = CGRect(x: 0, y: 20, width: 300, height: 500)
         
-        let mainView: MainView = MainView()
-        mainView.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 20.0, width: 250, height: 50)
-        mainView.backgroundColor = UIColor.darkGray
-        window?.rootViewController?.view.addSubview(mainView)
+        let redColorSelector: RedSelectorView = RedSelectorView()
+        redColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 20.0, width: 250, height: 50)
+        
+        let greenColorSelector: GreenSelectorView = GreenSelectorView()
+        greenColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 90.0, width: 250, height: 50)
+        
+        let blueColorSelector: BlueSelectorView = BlueSelectorView()
+        blueColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 160.0, width: 250, height: 50)
+        
+        let colorSelector: ColorSelectorView = ColorSelectorView()
+        colorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 230.0, width: 250, height: 50)
+        
+        window?.rootViewController?.view.addSubview(redColorSelector)
+        window?.rootViewController?.view.addSubview(greenColorSelector)
+        window?.rootViewController?.view.addSubview(blueColorSelector)
+        window?.rootViewController?.view.addSubview(colorSelector)
+        
         
         //window?.rootViewController?.view.addSubview(gl)
         
