@@ -8,37 +8,44 @@
 
 import UIKit
 
-class BrushExampleView: UIView, BrushJoinDelegate, BrushCapDelegate {
-    
-    var brushCapStyle: CGLineCap = CGLineCap.round
-    var brushJoinStyle: CGLineJoin = CGLineJoin.bevel
-    var width: Float = 0.5
+class BrushExampleView: UIView {
+
+    var _brushCapStyle: CGLineCap = CGLineCap.round
+    var _brushJoinStyle: CGLineJoin = CGLineJoin.bevel
+    var _color: CGColor = UIColor.black.cgColor
+    var _width: Float = 0.5
     
     override func draw(_ rect: CGRect) {
         let context: CGContext = UIGraphicsGetCurrentContext()!
-        context.move(to: CGPoint(x: 50, y: (window?.bounds.height)! - 30))
-        context.addLine(to: CGPoint(x: 125, y: (window?.bounds.height)! - 70))
-        context.addLine(to: CGPoint(x: 170, y: (window?.bounds.height)! - 35))
-        context.addLine(to: CGPoint(x: 230, y: (window?.bounds.height)! - 60))
-        context.addLine(to: CGPoint(x: 300, y: (window?.bounds.height)! - 45))
-        context.setLineCap(brushCapStyle)
-        context.setLineJoin(brushJoinStyle)
-        context.setLineWidth(CGFloat(width))
+        context.move(to: CGPoint(x: 30, y: (bounds.height) - 50))
+        context.addLine(to: CGPoint(x: 95, y: (bounds.height) - 88))
+        context.addLine(to: CGPoint(x: 125, y: (bounds.height) - 45))
+        context.addLine(to: CGPoint(x: 165, y: (bounds.height) - 80))
+        context.addLine(to: CGPoint(x: 270, y: (bounds.height) - 65))
+        context.setLineCap(_brushCapStyle)
+        context.setLineJoin(_brushJoinStyle)
+        context.setLineWidth(CGFloat(_width))
+        context.setStrokeColor(_color)
         context.drawPath(using: CGPathDrawingMode.stroke)
     }
     
-    func brushCap(brushCap: BrushCapView, StylePicked style: CGLineCap) {
-        brushCapStyle = style
+    func capStyleChanged(capStyle: CGLineCap) {
+        _brushCapStyle = capStyle
         setNeedsDisplay()
     }
     
-    func brushJoin(brushJoin: BrushJoinView, StylePicked style: CGLineJoin) {
-        brushJoinStyle = style
+    func joinStyleChanged(joinStyle: CGLineJoin) {
+        _brushJoinStyle = joinStyle
         setNeedsDisplay()
     }
     
-    func widthSliderChanged (widthValue: Float) {
-        width = widthValue
+    func widthChanged(newWidth: Float) {
+        _width = newWidth
+        setNeedsDisplay()
+    }
+    
+    func colorChanged(newColor: CGColor) {
+        _color = newColor
         setNeedsDisplay()
     }
 }

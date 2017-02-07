@@ -21,21 +21,19 @@ class BrushCapView: UIView {
     override func draw(_ rect: CGRect) {
         let context: CGContext = UIGraphicsGetCurrentContext()!
         
+        context.setLineWidth(3.0)
         context.addRect(CGRect(x:0,y:0,width:bounds.width,height:bounds.height))
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(3.0)
         context.drawPath(using: CGPathDrawingMode.stroke)
-        
-        context.setLineWidth(7.0)
+        context.setLineWidth(15.0)
         
         context.setStrokeColor(UIColor.white.cgColor)
         if (_choice == 0){
             context.setStrokeColor(UIColor.magenta.cgColor)
         }
         context.setLineCap(CGLineCap.round)
-        context.move(to: CGPoint(x:17.5,y:15))
-        context.addLine(to: CGPoint(x:47.5,y:45))
-        context.addLine(to: CGPoint(x:77.5,y:15))
+        context.move(to: CGPoint(x:17.5,y:30))
+        context.addLine(to: CGPoint(x:77.5,y:30))
         context.drawPath(using: CGPathDrawingMode.stroke)
         
         context.setStrokeColor(UIColor.white.cgColor)
@@ -43,9 +41,8 @@ class BrushCapView: UIView {
             context.setStrokeColor(UIColor.magenta.cgColor)
         }
         context.setLineCap(CGLineCap.square)
-        context.move(to: CGPoint(x:95,y:15))
-        context.addLine(to: CGPoint(x:125,y:45))
-        context.addLine(to: CGPoint(x:155,y:15))
+        context.move(to: CGPoint(x:95,y:30))
+        context.addLine(to: CGPoint(x:155,y:30))
         context.drawPath(using: CGPathDrawingMode.stroke)
         
         context.setStrokeColor(UIColor.white.cgColor)
@@ -53,9 +50,18 @@ class BrushCapView: UIView {
             context.setStrokeColor(UIColor.magenta.cgColor)
         }
         context.setLineCap(CGLineCap.butt)
-        context.move(to: CGPoint(x:172.5,y:15))
-        context.addLine(to: CGPoint(x:202.5,y:45))
-        context.addLine(to: CGPoint(x:232.5,y:15))
+        context.move(to: CGPoint(x:172.5,y:30))
+        context.addLine(to: CGPoint(x:232.5,y:30))
+        context.drawPath(using: CGPathDrawingMode.stroke)
+        
+        context.setStrokeColor(UIColor.black.cgColor)
+        context.setLineWidth(1.0)
+        context.move(to: CGPoint(x:17.5,y:30))
+        context.addLine(to: CGPoint(x:77.5,y:30))
+        context.move(to: CGPoint(x:95,y:30))
+        context.addLine(to: CGPoint(x:155,y:30))
+        context.move(to: CGPoint(x:172.5,y:30))
+        context.addLine(to: CGPoint(x:232.5,y:30))
         context.drawPath(using: CGPathDrawingMode.stroke)
     }
     

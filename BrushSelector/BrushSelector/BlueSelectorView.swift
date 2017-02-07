@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol BlueSelectorDelegate: class {
-    func blueSelector(redSelector: BlueSelectorView, rotatedToAngle angle: Float)
-}
-
 class BlueSelectorView: UIView {
     
     let slider: ColorSelectorView = ColorSelectorView()
@@ -20,6 +16,7 @@ class BlueSelectorView: UIView {
         super.init(frame: CGRect(x: 0.0, y: 0.0, width: 250, height: 50))
         slider.frame = self.bounds
         slider.backgroundColor = UIColor.clear
+        slider.color = "blue"
         self.addSubview(slider)
         bringSubview(toFront: slider)
     }
@@ -28,6 +25,7 @@ class BlueSelectorView: UIView {
         super.init(frame: frame)
         slider.frame = self.bounds
         slider.backgroundColor = UIColor.clear
+        slider.color = "blue"
         self.addSubview(slider)
         bringSubview(toFront: slider)
     }
@@ -36,6 +34,7 @@ class BlueSelectorView: UIView {
         super.init(frame: CGRect())
         slider.frame = self.bounds
         slider.backgroundColor = UIColor.clear
+        slider.color = "blue"
         self.addSubview(slider)
         bringSubview(toFront: slider)
     }
@@ -55,6 +54,5 @@ class BlueSelectorView: UIView {
         context.setLineWidth(5.0)
         context.setStrokeColor(UIColor.lightGray.cgColor)
         context.drawPath(using: CGPathDrawingMode.stroke)
-        
     }
 }

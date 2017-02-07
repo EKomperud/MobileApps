@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ColorSelectorDelegate: class {
-    func colorSelector(colorSelector: ColorSelectorView, rotatedToAngle angle: Float)
+    func colorSelector(colorSelector: ColorSelectorView, movedToValue value: CGFloat, asColor color: String)
 }
 
 class ColorSelectorView: UIView {
@@ -17,6 +17,8 @@ class ColorSelectorView: UIView {
     let view = UIView()
     private var _sliderPosition: CGFloat = 0.0
     var ellipse = CGRect()
+    var color: String = ""
+    weak var delegate: ColorSelectorDelegate? = nil
     
     override func draw(_ rect: CGRect) {
         
@@ -49,6 +51,10 @@ class ColorSelectorView: UIView {
         else if (x < 0) {
             x = 0
         }
+        
+        let X = x / bounds.width
+        
+        delegate?.colorSelector(colorSelector: self, movedToValue: X, asColor: color)
         sliderPosition = x
     }
     
@@ -62,9 +68,12 @@ class ColorSelectorView: UIView {
         else if (x < 0) {
             x = 0
         }
+        
+        let X = x / bounds.width
+        
+        delegate?.colorSelector(colorSelector: self, movedToValue: X, asColor: color)
         sliderPosition = x
     }
-    
     
     var sliderPosition: CGFloat {
         get {

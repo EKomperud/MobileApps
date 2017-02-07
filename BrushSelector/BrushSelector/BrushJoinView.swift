@@ -26,7 +26,7 @@ class BrushJoinView: UIView {
         context.setLineWidth(3.0)
         context.drawPath(using: CGPathDrawingMode.stroke)
         
-        context.setLineWidth(7.0)
+        context.setLineWidth(10.0)
         
         context.setStrokeColor(UIColor.white.cgColor)
         if (_choice == 0){

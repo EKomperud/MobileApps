@@ -8,18 +8,16 @@
 
 import UIKit
 
-protocol RedSelectorDelegate: class {
-    func redSelector(redSelector: RedSelectorView, rotatedToAngle angle: Float)
-}
-
 class RedSelectorView: UIView {
     
     let slider: ColorSelectorView = ColorSelectorView()
+    //var value: Int = 0
 
     init() {
         super.init(frame: CGRect(x: 0.0, y: 0.0, width: 250, height: 50))
         slider.frame = self.bounds
         slider.backgroundColor = UIColor.clear
+        slider.color = "red"
         self.addSubview(slider)
         bringSubview(toFront: slider)
     }
@@ -28,6 +26,7 @@ class RedSelectorView: UIView {
         super.init(frame: frame)
         slider.frame = self.bounds
         slider.backgroundColor = UIColor.clear
+        slider.color = "red"
         self.addSubview(slider)
         bringSubview(toFront: slider)
     }
@@ -36,6 +35,7 @@ class RedSelectorView: UIView {
         super.init(frame: CGRect())
         slider.frame = self.bounds
         slider.backgroundColor = UIColor.clear
+        slider.color = "red"
         self.addSubview(slider)
         bringSubview(toFront: slider)
     }

@@ -13,81 +13,101 @@ protocol WidthSliderDelegate: class {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate  {
+class AppDelegate: UIResponder, UIApplicationDelegate, BrushJoinDelegate, BrushCapDelegate, ColorSelectorDelegate {
 
     var window: UIWindow?
     let gl: CAGradientLayer = CAGradientLayer()
     let widthSlider: UISlider = UISlider()
+    var _red: CGFloat = 0.0
+    var _green: CGFloat = 0.0
+    var _blue: CGFloat = 0.0
     var width: Float = 0.5
-
+    let brushExample: BrushExampleView = BrushExampleView()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         
-//        gl.colors = [UIColor.darkGray.cgColor, UIColor.black.cgColor]
-//        gl.frame = CGRect(x: 0, y: 20, width: 300, height: 500)
+        //let brushExample: BrushExampleView = BrushExampleView()
+        brushExample.frame = CGRect(x:(window?.frame.width)! / 2 - 150, y: (window?.frame.height)! - 140, width:300, height: 140)
+        brushExample.backgroundColor = UIColor.clear
         
-        let brushExample: BrushExampleView = BrushExampleView()
+        //let title: UIView = UIView(frame: CGRect(x: (window?.frame.width)! / 2 - 125, y: 20.0, width: 250, height: 50))
+        let title: UILabel = UILabel(frame: CGRect(x: (window?.frame.width)! / 2 - 125, y: 20.0, width: 250, height: 50))
+        title.text = "Brush Selector"
+        title.textColor = UIColor.white
+        title.textAlignment = NSTextAlignment.center
+        title.font = UIFont(name: "AmericanTypewriter", size: 30)
         
         let redColorSelector: RedSelectorView = RedSelectorView()
-        redColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 20.0, width: 250, height: 50)
+        redColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 90.0, width: 250, height: 50)
+        let redSubView: ColorSelectorView = redColorSelector.subviews[0] as! ColorSelectorView
+        redSubView.delegate = self
         
         let greenColorSelector: GreenSelectorView = GreenSelectorView()
-        greenColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 90.0, width: 250, height: 50)
+        greenColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 160.0, width: 250, height: 50)
+        let greenSubView: ColorSelectorView = greenColorSelector.subviews[0] as! ColorSelectorView
+        greenSubView.delegate = self
         
         let blueColorSelector: BlueSelectorView = BlueSelectorView()
-        blueColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 160.0, width: 250, height: 50)
-        
-        let colorSelector: ColorSelectorView = ColorSelectorView()
-        colorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 230.0, width: 250, height: 50)
+        blueColorSelector.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: 230.0, width: 250, height: 50)
+        let blueSubView: ColorSelectorView = blueColorSelector.subviews[0] as! ColorSelectorView
+        blueSubView.delegate = self
         
         let brushCap: BrushCapView = BrushCapView()
-        brushCap.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 50, width: 250, height: 60)
-        brushCap.delegate = brushExample
+        brushCap.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 70, width: 250, height: 60)
+        brushCap.delegate = self
         
         let brushJoin: BrushJoinView = BrushJoinView()
         brushJoin.frame = CGRect(x: (window?.frame.width)! / 2 - 125, y: ((window?.frame.height)! / 2) + 160, width: 250, height: 60)
-        brushJoin.delegate = brushExample
+        brushJoin.delegate = self
         
-        
-
-        
+        window?.rootViewController?.view.addSubview(title)
         window?.rootViewController?.view.addSubview(redColorSelector)
         window?.rootViewController?.view.addSubview(greenColorSelector)
         window?.rootViewController?.view.addSubview(blueColorSelector)
-        window?.rootViewController?.view.addSubview(colorSelector)
         window?.rootViewController?.view.addSubview(brushCap)
         window?.rootViewController?.view.addSubview(brushJoin)
+        window?.rootViewController?.view.addSubview(brushExample)        
         
-        //let context = UIGraphicsGetCurrentContext()
-        
-        widthSlider.frame = CGRect(x: 40, y: (window?.frame.height)! / 2, width: (window?.frame.width)! - 80, height: 30)
+        widthSlider.frame = CGRect(x: 40, y: ((window?.frame.height)! / 2) + 20, width: (window?.frame.width)! - 80, height: 30)
         widthSlider.minimumValue = 0.5
         widthSlider.maximumValue = 50.0
-        widthSlider.addTarget(brushExample, action: #selector(brushExample.widthSliderChanged), for: UIControlEvents.valueChanged)
+        widthSlider.addTarget(self, action: #selector(widthSliderChanged), for: UIControlEvents.valueChanged)
         window?.rootViewController?.view.addSubview(widthSlider)
         
         return true
     }
     
-
     
-//    func drawBrushExample() {
-//        //context: CGContext = UIGraphicsGetCurrentContext()!
-//        context?.move(to: CGPoint(x: 50, y: (window?.bounds.height)! - 30))
-//        context?.addLine(to: CGPoint(x: 125, y: (window?.bounds.height)! - 70))
-//        context?.addLine(to: CGPoint(x: 170, y: (window?.bounds.height)! - 35))
-//        context?.addLine(to: CGPoint(x: 230, y: (window?.bounds.height)! - 60))
-//        context?.addLine(to: CGPoint(x: 300, y: (window?.bounds.height)! - 45))
-//        context?.setLineCap(brushCapStyle)
-//        context?.setLineJoin(brushJoinStyle)
-//        context?.setLineWidth(CGFloat(width))
-//        context?.drawPath(using: CGPathDrawingMode.stroke)
-//        //context.addLine(to: CGPoint(x: 400, y: (window?.bounds.height)! - 70))
-//    }
-
+    func brushCap(brushCap: BrushCapView, StylePicked style: CGLineCap) {
+        brushExample.capStyleChanged(capStyle: style)
+    }
+    
+    func brushJoin(brushJoin: BrushJoinView, StylePicked style: CGLineJoin) {
+        brushExample.joinStyleChanged(joinStyle: style)
+    }
+    
+    func widthSliderChanged () {
+        brushExample.widthChanged(newWidth: widthSlider.value)
+    }
+    
+    func colorSelector(colorSelector: ColorSelectorView, movedToValue value: CGFloat, asColor color: String) {
+        if (color == "red") {
+            _red = value
+        }
+        if (color == "green") {
+            _green = value
+        }
+        if (color == "blue") {
+            _blue = value
+        }
+        let newColor: CGColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [_red,_green,_blue,1.0])!
+        //let newColor: CGColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.4,0.3,0.8])!
+        brushExample.colorChanged(newColor: newColor)
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
