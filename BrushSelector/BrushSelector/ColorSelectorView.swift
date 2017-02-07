@@ -14,19 +14,14 @@ protocol ColorSelectorDelegate: class {
 
 class ColorSelectorView: UIView {
     
-    let view = UIView(frame: CGRect(x:50, y:50, width: 200, height: 200))
+    let view = UIView()
     private var _sliderPosition: CGFloat = 0.0
     var ellipse = CGRect()
     
     override func draw(_ rect: CGRect) {
         
         let context: CGContext = UIGraphicsGetCurrentContext()!
-        
-        // Add border rectangle
-        context.addRect(CGRect(x:0.0, y:0.0, width:250, height:50))
-        context.setLineWidth(5.0)
-        context.setStrokeColor(UIColor.lightGray.cgColor)
-        context.drawPath(using: CGPathDrawingMode.stroke)
+        context.clear(bounds)
         
         // Add slider
         context.setStrokeColor(UIColor.lightGray.cgColor)

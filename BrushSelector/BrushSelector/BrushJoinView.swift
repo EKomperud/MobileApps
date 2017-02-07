@@ -82,7 +82,31 @@ class BrushJoinView: UIView {
             choice = 2
             delegate?.brushJoin(brushJoin: self, StylePicked: CGLineJoin.round)
         }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: self)
+        var x = touchPoint.x
+        if (x > bounds.width) {
+            x = bounds.width
+        }
+        else if (x < 0) {
+            x = 0
+        }
         
+        if (x < 91.25) {
+            choice = 0
+            delegate?.brushJoin(brushJoin: self, StylePicked: CGLineJoin.bevel)
+        }
+        else if (x >= 91.25 && x < 158.25) {
+            choice = 1
+            delegate?.brushJoin(brushJoin: self, StylePicked: CGLineJoin.miter)
+        }
+        else {
+            choice = 2
+            delegate?.brushJoin(brushJoin: self, StylePicked: CGLineJoin.round)
+        }
     }
     
     var choice : CShort {
