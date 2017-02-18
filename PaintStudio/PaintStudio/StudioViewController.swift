@@ -6,4 +6,20 @@
 //  Copyright © 2017 cs4530. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class StudioViewController: UIViewController {
+    override func loadView() {
+        
+    }
+    
+    override func viewDidLoad() {
+        <#code#>
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        <#code#>
+    }
+    
+    
+}
