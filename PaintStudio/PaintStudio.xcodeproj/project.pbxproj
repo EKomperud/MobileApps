@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E33B998D1E592836008383B3 /* StudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33B998C1E592836008383B3 /* StudioView.swift */; };
 		E3D56C421E57C17B0021D9E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */; };
 		E3D56C441E57C17B0021D9E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D56C431E57C17B0021D9E2 /* ViewController.swift */; };
 		E3D56C491E57C17B0021D9E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D56C481E57C17B0021D9E2 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E33B998C1E592836008383B3 /* StudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudioView.swift; sourceTree = "<group>"; };
 		E3D56C3E1E57C17B0021D9E2 /* PaintStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaintStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D56C431E57C17B0021D9E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,8 +58,9 @@
 			children = (
 				E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */,
 				E3D56C431E57C17B0021D9E2 /* ViewController.swift */,
-				E3D56C531E57C2C70021D9E2 /* StudioViewController.swift */,
 				E3D56C551E57C8870021D9E2 /* PaintingCollection.swift */,
+				E33B998C1E592836008383B3 /* StudioView.swift */,
+				E3D56C531E57C2C70021D9E2 /* StudioViewController.swift */,
 				E3D56C481E57C17B0021D9E2 /* Assets.xcassets */,
 				E3D56C4D1E57C17B0021D9E2 /* Info.plist */,
 			);
@@ -134,6 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E33B998D1E592836008383B3 /* StudioView.swift in Sources */,
 				E3D56C441E57C17B0021D9E2 /* ViewController.swift in Sources */,
 				E3D56C561E57C8870021D9E2 /* PaintingCollection.swift in Sources */,
 				E3D56C541E57C2C70021D9E2 /* StudioViewController.swift in Sources */,
@@ -280,6 +284,7 @@
 				E3D56C521E57C17B0021D9E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

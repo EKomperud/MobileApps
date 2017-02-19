@@ -11,9 +11,18 @@ import UIKit
 class PaintingCollection {
     
     // Array of paintings
-    var collection = Array<Any>()
+    var collection = Array<Painting>()
+    var count: Int {
+        return collection.count
+    }
     
+    func AddPainting(p: Painting) {
+        collection.append(p)
+    }
     
+    func RemovePainting(index: Int) {
+        collection.remove(at: index)
+    }
 }
 
 class Painting {
@@ -21,14 +30,28 @@ class Painting {
     var strokes = Array<Stroke>()
     
     // Aspect ratio
+    let aspectX: Int
+    let aspectY: Int
     
+    init(AspectX: Int, AspectY: Int) {
+        aspectX = AspectX
+        aspectY = AspectY
+    }
+    
+    // Stroke count
     var strokeCount: Int {
         return strokes.count
     }
     
     // Add stroke
+    func AddStroke(stroke: Stroke) {
+        strokes.append(stroke)
+    }
     
     // Remove stroke
+    func RemoveStroke() {
+        strokes.remove(at: strokes.count - 1)
+    }
 }
 
 class Stroke {
