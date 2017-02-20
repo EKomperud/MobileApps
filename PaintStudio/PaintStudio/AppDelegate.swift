@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
-        window?.rootViewController = StudioViewController()
+        window?.rootViewController = UINavigationController(rootViewController: StudioViewController())
         window?.makeKeyAndVisible()
         
-        window?.rootViewController?.view.backgroundColor = UIColor.darkGray
+        //window?.rootViewController?.view.backgroundColor = UIColor.darkGray
         
         
         

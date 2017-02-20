@@ -52,6 +52,16 @@ class Painting {
     func RemoveStroke() {
         strokes.remove(at: strokes.count - 1)
     }
+    
+    // Get strokes
+    func GetStrokes() -> Array<Stroke> {
+        return strokes
+    }
+    
+    // Get most recent stroke
+    func GetLastStroke() -> Stroke? {
+        return strokes.last
+    }
 }
 
 class Stroke {

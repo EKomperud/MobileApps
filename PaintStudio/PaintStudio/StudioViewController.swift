@@ -8,18 +8,24 @@
 
 import UIKit
 
-class StudioViewController: UIViewController {
+class StudioViewController: UIViewController, StudioDelegate {
+    var studioView = StudioView()
+    var studioModel = Painting(AspectX: 100, AspectY: 100)
+    
     override func loadView() {
-        
+        view = studioView
+        studioView.delegate = self
     }
     
     override func viewDidLoad() {
-        <#code#>
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        <#code#>
+        
     }
     
-    
+    func studio(studio: StudioView, painted stroke: Stroke) {
+        studioModel.AddStroke(stroke: stroke)
+    }
 }
