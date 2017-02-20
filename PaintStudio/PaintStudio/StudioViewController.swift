@@ -10,7 +10,6 @@ import UIKit
 
 class StudioViewController: UIViewController, StudioDelegate {
     var studioView = StudioView()
-    //var studioModel = Painting(AspectX: 100, AspectY: 100)
     var studioModel = PaintingCollection()
     
     override func loadView() {
@@ -27,7 +26,6 @@ class StudioViewController: UIViewController, StudioDelegate {
     }
     
     func studio(studio: StudioView, painted stroke: Stroke) {
-        //studioModel.AddStroke(stroke: stroke)
         studioModel.collection[studio.index].AddStroke(stroke: stroke)
     }
     

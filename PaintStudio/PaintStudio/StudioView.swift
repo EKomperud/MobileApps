@@ -33,21 +33,6 @@ class StudioView: UIView {
     var delegate: StudioDelegate! //= nil
     var recorded: Bool = false
     
-//    init() {
-//        super.init(frame: CGRect())
-//        delegate?.created(studio: self, withCanvas: painting)
-//    }
-//    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        delegate?.created(studio: self, withCanvas: painting)
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(frame: CGRect())
-//        delegate?.created(studio: self, withCanvas: painting)
-//    }
-    
     override func draw(_ rect: CGRect) {
 
         if !recorded {

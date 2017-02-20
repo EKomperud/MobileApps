@@ -30,6 +30,7 @@ class PaintingCollection {
 }
 
 class Painting {
+    
     // Array of strokes
     var strokes = Array<Stroke>()
     
@@ -72,6 +73,7 @@ class Painting {
 }
 
 class Stroke {
+    
     // Array of points
     var points = Array<Point>()
     
