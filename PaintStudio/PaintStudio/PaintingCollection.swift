@@ -23,6 +23,10 @@ class PaintingCollection {
     func RemovePainting(index: Int) {
         collection.remove(at: index)
     }
+    
+    func GetPainting(index: Int) -> Painting {
+        return collection[index]
+    }
 }
 
 class Painting {
@@ -32,6 +36,9 @@ class Painting {
     // Aspect ratio
     let aspectX: Int
     let aspectY: Int
+    
+    // Index
+    var index: Int = 0
     
     init(AspectX: Int, AspectY: Int) {
         aspectX = AspectX
@@ -84,6 +91,10 @@ class Stroke {
     func AddPoint(X: Float, Y: Float) {
         let p = Point(X: X, Y: Y)
         points.append(p)
+    }
+    
+    func IsEmpty() -> Bool {
+        return points.isEmpty
     }
 }
 

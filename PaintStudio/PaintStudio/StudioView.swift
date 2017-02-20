@@ -10,6 +10,8 @@ import UIKit
 
 protocol StudioDelegate: class {
     func studio(studio: StudioView, painted stroke: Stroke)
+    
+    func created(studio: StudioView, withCanvas painting: Painting)
 }
 
 class StudioView: UIView {
@@ -22,28 +24,57 @@ class StudioView: UIView {
     
     // Painting
     let painting = Painting(AspectX: 100, AspectY: 100)
+    var index = 0
     
     // Current stroke
     var stroke = Stroke(W: 2.0, C: UIColor.white.cgColor, Join: CGLineJoin.round, Cap: CGLineCap.round)
     
     // Declare delegate
-    weak var delegate: StudioDelegate? = nil
+    var delegate: StudioDelegate! //= nil
+    var recorded: Bool = false
+    
+//    init() {
+//        super.init(frame: CGRect())
+//        delegate?.created(studio: self, withCanvas: painting)
+//    }
+//    
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        delegate?.created(studio: self, withCanvas: painting)
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(frame: CGRect())
+//        delegate?.created(studio: self, withCanvas: painting)
+//    }
     
     override func draw(_ rect: CGRect) {
 
+        if !recorded {
+            delegate?.created(studio: self, withCanvas: painting)
+            recorded = true
+        }
+        
         let context: CGContext = UIGraphicsGetCurrentContext()!
         context.setLineWidth(CGFloat(width))
         context.setStrokeColor(color)
         context.setLineJoin(lineJoin)
         context.setLineCap(lineCap)
         
-        if let currentStroke = painting.GetLastStroke() {
-            context.move(to: CGPoint(x: CGFloat((currentStroke.points.first?.x)!), y: CGFloat((currentStroke.points.first?.y)!)))
-            for point in currentStroke.points {
+        for s in painting.strokes {
+            context.move(to: CGPoint(x: CGFloat((s.points.first?.x)!), y: CGFloat((s.points.first?.y)!)))
+            for point in s.points {
                 context.addLine(to: CGPoint(x: CGFloat(point.x), y: CGFloat(point.y)))
             }
-            context.drawPath(using: CGPathDrawingMode.stroke)
         }
+        
+        if !stroke.IsEmpty() {
+            context.move(to: CGPoint(x: CGFloat((stroke.points.first?.x)!), y: CGFloat((stroke.points.first?.y)!)))
+            for point in stroke.points {
+                context.addLine(to: CGPoint(x: CGFloat(point.x), y: CGFloat(point.y)))
+            }
+        }
+        context.drawPath(using: CGPathDrawingMode.stroke)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
