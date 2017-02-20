@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E32475DF1E5A8F8400DAFC12 /* BrushSelector in Resources */ = {isa = PBXBuildFile; fileRef = E32475DE1E5A8F8400DAFC12 /* BrushSelector */; };
+		E32475E11E5A916B00DAFC12 /* BrushSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32475E01E5A916B00DAFC12 /* BrushSelectorViewController.swift */; };
+		E32475E31E5A94AA00DAFC12 /* BrushSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32475E21E5A94AA00DAFC12 /* BrushSelectorView.swift */; };
 		E33B998D1E592836008383B3 /* StudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33B998C1E592836008383B3 /* StudioView.swift */; };
 		E3D56C421E57C17B0021D9E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */; };
 		E3D56C491E57C17B0021D9E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D56C481E57C17B0021D9E2 /* Assets.xcassets */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E32475DE1E5A8F8400DAFC12 /* BrushSelector */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BrushSelector; sourceTree = "<group>"; };
+		E32475E01E5A916B00DAFC12 /* BrushSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushSelectorViewController.swift; sourceTree = "<group>"; };
+		E32475E21E5A94AA00DAFC12 /* BrushSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushSelectorView.swift; sourceTree = "<group>"; };
 		E33B998C1E592836008383B3 /* StudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudioView.swift; sourceTree = "<group>"; };
 		E3D56C3E1E57C17B0021D9E2 /* PaintStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaintStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,9 +61,12 @@
 			isa = PBXGroup;
 			children = (
 				E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */,
+				E32475E21E5A94AA00DAFC12 /* BrushSelectorView.swift */,
+				E32475E01E5A916B00DAFC12 /* BrushSelectorViewController.swift */,
 				E33B998C1E592836008383B3 /* StudioView.swift */,
 				E3D56C531E57C2C70021D9E2 /* StudioViewController.swift */,
 				E3D56C551E57C8870021D9E2 /* PaintingCollection.swift */,
+				E32475DE1E5A8F8400DAFC12 /* BrushSelector */,
 				E3D56C481E57C17B0021D9E2 /* Assets.xcassets */,
 				E3D56C4D1E57C17B0021D9E2 /* Info.plist */,
 			);
@@ -123,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E32475DF1E5A8F8400DAFC12 /* BrushSelector in Resources */,
 				E3D56C491E57C17B0021D9E2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,10 +144,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E32475E31E5A94AA00DAFC12 /* BrushSelectorView.swift in Sources */,
 				E33B998D1E592836008383B3 /* StudioView.swift in Sources */,
 				E3D56C561E57C8870021D9E2 /* PaintingCollection.swift in Sources */,
 				E3D56C541E57C2C70021D9E2 /* StudioViewController.swift in Sources */,
 				E3D56C421E57C17B0021D9E2 /* AppDelegate.swift in Sources */,
+				E32475E11E5A916B00DAFC12 /* BrushSelectorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
