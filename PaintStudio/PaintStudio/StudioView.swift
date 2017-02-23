@@ -12,18 +12,20 @@ protocol StudioDelegate: class {
     func studio(studio: StudioView, painted stroke: Stroke)
     
     func created(studio: StudioView, withCanvas painting: Painting)
+    
+    func brushSelect(studio: StudioView)
 }
 
 class StudioView: UIView {
     
     // Brush settings
-    let width: Float = 2.0
-    let color: CGColor = UIColor.white.cgColor
-    let lineJoin: CGLineJoin = CGLineJoin.round
-    let lineCap: CGLineCap = CGLineCap.round
+    var width: Float = 2.0
+    var color: CGColor = UIColor.white.cgColor
+    var lineJoin: CGLineJoin = CGLineJoin.round
+    var lineCap: CGLineCap = CGLineCap.round
     
     // Painting
-    let painting = Painting(AspectX: 100, AspectY: 100)
+    let painting = Painting(AspectX: 100.0, AspectY: 200.0)
     var index = 0
     
     // Current stroke
@@ -33,6 +35,18 @@ class StudioView: UIView {
     var delegate: StudioDelegate! //= nil
     var recorded: Bool = false
     
+    init() {
+        super.init(frame: CGRect())
+        let brushSelector: UIButton = UIButton(frame: CGRect(x: frame.maxX / 2, y: 20, width: 50, height: 100))
+        brushSelector.setTitle("Brush Selector", for: .normal)
+        brushSelector.addTarget(self, action: #selector(brushSelect), for: .touchUpInside)
+        self.addSubview(brushSelector)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(frame: CGRect())
+    }
+    
     override func draw(_ rect: CGRect) {
 
         if !recorded {
@@ -41,22 +55,27 @@ class StudioView: UIView {
         }
         
         let context: CGContext = UIGraphicsGetCurrentContext()!
-        context.setLineWidth(CGFloat(width))
-        context.setStrokeColor(color)
-        context.setLineJoin(lineJoin)
-        context.setLineCap(lineCap)
         
         for s in painting.strokes {
-            context.move(to: CGPoint(x: CGFloat((s.points.first?.x)!), y: CGFloat((s.points.first?.y)!)))
+            context.setStrokeColor(s.color)
+            context.setLineCap(s.lineCap)
+            context.setLineJoin(s.lineJoin)
+            context.setLineWidth(CGFloat(s.width))
+            context.move(to: CGPoint(x: CGFloat((s.points.first?.x)!) * painting.aspectX, y: CGFloat((s.points.first?.y)!) * painting.aspectY))
             for point in s.points {
-                context.addLine(to: CGPoint(x: CGFloat(point.x), y: CGFloat(point.y)))
+                context.addLine(to: CGPoint(x: CGFloat(point.x) * painting.aspectX, y: CGFloat(point.y) * painting.aspectY))
             }
+            context.drawPath(using: .stroke)
         }
         
         if !stroke.IsEmpty() {
-            context.move(to: CGPoint(x: CGFloat((stroke.points.first?.x)!), y: CGFloat((stroke.points.first?.y)!)))
+            context.setStrokeColor(color)
+            context.setLineCap(lineCap)
+            context.setLineJoin(lineJoin)
+            context.setLineWidth(CGFloat(width))
+            context.move(to: CGPoint(x: CGFloat((stroke.points.first?.x)!) * painting.aspectX, y: CGFloat((stroke.points.first?.y)!) * painting.aspectY))
             for point in stroke.points {
-                context.addLine(to: CGPoint(x: CGFloat(point.x), y: CGFloat(point.y)))
+                context.addLine(to: CGPoint(x: CGFloat(point.x) * painting.aspectX, y: CGFloat(point.y) * painting.aspectY))
             }
         }
         context.drawPath(using: CGPathDrawingMode.stroke)
@@ -69,9 +88,10 @@ class StudioView: UIView {
         // Get X and Y positions
         let touch: UITouch = touches.first!
         let touchPoint: CGPoint = touch.location(in: self)
+        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
         
         // Add point to stroke
-        stroke.AddPoint(X: Float(touchPoint.x), Y: Float(touchPoint.y))
+        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
         
         // Redraw lines
         setNeedsDisplay()
@@ -81,9 +101,10 @@ class StudioView: UIView {
         // Get X and Y positions
         let touch: UITouch = touches.first!
         let touchPoint: CGPoint = touch.location(in: self)
+        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
         
         // Add point to stroke
-        stroke.AddPoint(X: Float(touchPoint.x), Y: Float(touchPoint.y))
+        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
         
         // Redraw lines
         setNeedsDisplay()
@@ -93,9 +114,10 @@ class StudioView: UIView {
         // Get X and Y positions
         let touch: UITouch = touches.first!
         let touchPoint: CGPoint = touch.location(in: self)
+        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
         
         // Add point to stroke
-        stroke.AddPoint(X: Float(touchPoint.x), Y: Float(touchPoint.y))
+        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
         
         // Add stroke to painting
         painting.AddStroke(stroke: stroke)
@@ -105,5 +127,9 @@ class StudioView: UIView {
         
         // Send delegation
         delegate?.studio(studio: self, painted: stroke)
+    }
+    
+    func brushSelect() {
+        delegate.brushSelect(studio: self)
     }
 }

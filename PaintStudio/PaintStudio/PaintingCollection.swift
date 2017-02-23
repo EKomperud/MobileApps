@@ -35,13 +35,13 @@ class Painting {
     var strokes = Array<Stroke>()
     
     // Aspect ratio
-    let aspectX: Int
-    let aspectY: Int
+    let aspectX: CGFloat
+    let aspectY: CGFloat
     
     // Index
     var index: Int = 0
     
-    init(AspectX: Int, AspectY: Int) {
+    init(AspectX: CGFloat, AspectY: CGFloat) {
         aspectX = AspectX
         aspectY = AspectY
     }

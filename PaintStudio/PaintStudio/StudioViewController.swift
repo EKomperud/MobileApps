@@ -8,12 +8,14 @@
 
 import UIKit
 
-class StudioViewController: UIViewController, StudioDelegate {
+class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDelegate {
     var studioView = StudioView()
     var studioModel = PaintingCollection()
+    let brushSelector = BrushSelectorViewController()
     
     override func loadView() {
         studioView.delegate = self
+        brushSelector.delegate = self
         view = studioView
     }
     
@@ -35,5 +37,16 @@ class StudioViewController: UIViewController, StudioDelegate {
         studioModel.collection[index].index = index
         studioView = studio
         studioView.index = index
+    }
+    
+    func brushSelected(brushSelector: BrushSelectorViewController, withColor color: CGColor, andWidth width: Float, andLineJoin lj: CGLineJoin, andAlsoLineCap lc: CGLineCap) {
+        studioView.color = color
+        studioView.width = width
+        studioView.lineJoin = lj
+        studioView.lineCap = lc
+    }
+    
+    func brushSelect(studio: StudioView) {
+        navigationController?.pushViewController(brushSelector, animated: true)
     }
 }

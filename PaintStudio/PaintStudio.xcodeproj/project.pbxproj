@@ -15,6 +15,13 @@
 		E3D56C491E57C17B0021D9E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D56C481E57C17B0021D9E2 /* Assets.xcassets */; };
 		E3D56C541E57C2C70021D9E2 /* StudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D56C531E57C2C70021D9E2 /* StudioViewController.swift */; };
 		E3D56C561E57C8870021D9E2 /* PaintingCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D56C551E57C8870021D9E2 /* PaintingCollection.swift */; };
+		E3E3A5B61E5E606C004014D3 /* ColorSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5B51E5E606C004014D3 /* ColorSelectorView.swift */; };
+		E3E3A5B81E5E6092004014D3 /* RedSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5B71E5E6092004014D3 /* RedSelectorView.swift */; };
+		E3E3A5BA1E5E6096004014D3 /* GreenSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5B91E5E6096004014D3 /* GreenSelectorView.swift */; };
+		E3E3A5BC1E5E609A004014D3 /* BlueSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5BB1E5E609A004014D3 /* BlueSelectorView.swift */; };
+		E3E3A5BE1E5E60B6004014D3 /* BrushJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5BD1E5E60B6004014D3 /* BrushJoinView.swift */; };
+		E3E3A5C01E5E60B9004014D3 /* BrushCapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5BF1E5E60B9004014D3 /* BrushCapView.swift */; };
+		E3E3A5C21E5E60C0004014D3 /* BrushExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5C11E5E60C0004014D3 /* BrushExampleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,13 @@
 		E3D56C4D1E57C17B0021D9E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3D56C531E57C2C70021D9E2 /* StudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudioViewController.swift; sourceTree = "<group>"; };
 		E3D56C551E57C8870021D9E2 /* PaintingCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingCollection.swift; sourceTree = "<group>"; };
+		E3E3A5B51E5E606C004014D3 /* ColorSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorSelectorView.swift; path = BrushSelector/ColorSelectorView.swift; sourceTree = "<group>"; };
+		E3E3A5B71E5E6092004014D3 /* RedSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RedSelectorView.swift; path = BrushSelector/RedSelectorView.swift; sourceTree = "<group>"; };
+		E3E3A5B91E5E6096004014D3 /* GreenSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GreenSelectorView.swift; path = BrushSelector/GreenSelectorView.swift; sourceTree = "<group>"; };
+		E3E3A5BB1E5E609A004014D3 /* BlueSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlueSelectorView.swift; path = BrushSelector/BlueSelectorView.swift; sourceTree = "<group>"; };
+		E3E3A5BD1E5E60B6004014D3 /* BrushJoinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrushJoinView.swift; path = BrushSelector/BrushJoinView.swift; sourceTree = "<group>"; };
+		E3E3A5BF1E5E60B9004014D3 /* BrushCapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrushCapView.swift; path = BrushSelector/BrushCapView.swift; sourceTree = "<group>"; };
+		E3E3A5C11E5E60C0004014D3 /* BrushExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrushExampleView.swift; path = BrushSelector/BrushExampleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +75,18 @@
 			isa = PBXGroup;
 			children = (
 				E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */,
-				E32475E21E5A94AA00DAFC12 /* BrushSelectorView.swift */,
-				E32475E01E5A916B00DAFC12 /* BrushSelectorViewController.swift */,
+				E3D56C551E57C8870021D9E2 /* PaintingCollection.swift */,
 				E33B998C1E592836008383B3 /* StudioView.swift */,
 				E3D56C531E57C2C70021D9E2 /* StudioViewController.swift */,
-				E3D56C551E57C8870021D9E2 /* PaintingCollection.swift */,
+				E32475E21E5A94AA00DAFC12 /* BrushSelectorView.swift */,
+				E32475E01E5A916B00DAFC12 /* BrushSelectorViewController.swift */,
+				E3E3A5B51E5E606C004014D3 /* ColorSelectorView.swift */,
+				E3E3A5B71E5E6092004014D3 /* RedSelectorView.swift */,
+				E3E3A5B91E5E6096004014D3 /* GreenSelectorView.swift */,
+				E3E3A5BB1E5E609A004014D3 /* BlueSelectorView.swift */,
+				E3E3A5BD1E5E60B6004014D3 /* BrushJoinView.swift */,
+				E3E3A5BF1E5E60B9004014D3 /* BrushCapView.swift */,
+				E3E3A5C11E5E60C0004014D3 /* BrushExampleView.swift */,
 				E32475DE1E5A8F8400DAFC12 /* BrushSelector */,
 				E3D56C481E57C17B0021D9E2 /* Assets.xcassets */,
 				E3D56C4D1E57C17B0021D9E2 /* Info.plist */,
@@ -147,9 +168,16 @@
 				E32475E31E5A94AA00DAFC12 /* BrushSelectorView.swift in Sources */,
 				E33B998D1E592836008383B3 /* StudioView.swift in Sources */,
 				E3D56C561E57C8870021D9E2 /* PaintingCollection.swift in Sources */,
+				E3E3A5BC1E5E609A004014D3 /* BlueSelectorView.swift in Sources */,
+				E3E3A5C01E5E60B9004014D3 /* BrushCapView.swift in Sources */,
 				E3D56C541E57C2C70021D9E2 /* StudioViewController.swift in Sources */,
+				E3E3A5BA1E5E6096004014D3 /* GreenSelectorView.swift in Sources */,
 				E3D56C421E57C17B0021D9E2 /* AppDelegate.swift in Sources */,
 				E32475E11E5A916B00DAFC12 /* BrushSelectorViewController.swift in Sources */,
+				E3E3A5B61E5E606C004014D3 /* ColorSelectorView.swift in Sources */,
+				E3E3A5B81E5E6092004014D3 /* RedSelectorView.swift in Sources */,
+				E3E3A5C21E5E60C0004014D3 /* BrushExampleView.swift in Sources */,
+				E3E3A5BE1E5E60B6004014D3 /* BrushJoinView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
