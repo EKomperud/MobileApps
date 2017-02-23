@@ -22,6 +22,7 @@
 		E3E3A5BE1E5E60B6004014D3 /* BrushJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5BD1E5E60B6004014D3 /* BrushJoinView.swift */; };
 		E3E3A5C01E5E60B9004014D3 /* BrushCapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5BF1E5E60B9004014D3 /* BrushCapView.swift */; };
 		E3E3A5C21E5E60C0004014D3 /* BrushExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3A5C11E5E60C0004014D3 /* BrushExampleView.swift */; };
+		E3E3A5C41E5EA407004014D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E3A5C31E5EA407004014D3 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		E3E3A5BD1E5E60B6004014D3 /* BrushJoinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrushJoinView.swift; path = BrushSelector/BrushJoinView.swift; sourceTree = "<group>"; };
 		E3E3A5BF1E5E60B9004014D3 /* BrushCapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrushCapView.swift; path = BrushSelector/BrushCapView.swift; sourceTree = "<group>"; };
 		E3E3A5C11E5E60C0004014D3 /* BrushExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrushExampleView.swift; path = BrushSelector/BrushExampleView.swift; sourceTree = "<group>"; };
+		E3E3A5C31E5EA407004014D3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				E32475DE1E5A8F8400DAFC12 /* BrushSelector */,
 				E3D56C481E57C17B0021D9E2 /* Assets.xcassets */,
 				E3D56C4D1E57C17B0021D9E2 /* Info.plist */,
+				E3E3A5C31E5EA407004014D3 /* LaunchScreen.storyboard */,
 			);
 			path = PaintStudio;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3E3A5C41E5EA407004014D3 /* LaunchScreen.storyboard in Resources */,
 				E32475DF1E5A8F8400DAFC12 /* BrushSelector in Resources */,
 				E3D56C491E57C17B0021D9E2 /* Assets.xcassets in Resources */,
 			);

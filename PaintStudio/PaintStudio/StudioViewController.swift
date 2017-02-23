@@ -12,6 +12,7 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
     var studioView = StudioView()
     var studioModel = PaintingCollection()
     let brushSelector = BrushSelectorViewController()
+
     
     override func loadView() {
         studioView.delegate = self

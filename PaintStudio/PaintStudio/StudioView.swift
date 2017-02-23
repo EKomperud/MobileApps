@@ -37,7 +37,7 @@ class StudioView: UIView {
     
     init() {
         super.init(frame: CGRect())
-        let brushSelector: UIButton = UIButton(frame: CGRect(x: frame.maxX / 2, y: 20, width: 50, height: 100))
+        let brushSelector: UIButton = UIButton(frame: CGRect(x: frame.width / 2, y: 20, width: 300, height: 100))
         brushSelector.setTitle("Brush Selector", for: .normal)
         brushSelector.addTarget(self, action: #selector(brushSelect), for: .touchUpInside)
         self.addSubview(brushSelector)
