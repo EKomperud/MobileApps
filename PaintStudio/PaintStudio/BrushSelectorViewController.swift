@@ -12,8 +12,11 @@ protocol BrushSelectorDelegate: class {
     func brushSelected(brushSelector: BrushSelectorViewController, withColor color: CGColor, andWidth width: Float, andLineJoin lj: CGLineJoin, andAlsoLineCap lc: CGLineCap)
 }
 
-class BrushSelectorViewController: UIViewController, ColorSelectorDelegate, BrushJoinDelegate, BrushCapDelegate {
+class BrushSelectorViewController: UIViewController, UINavigationControllerDelegate, ColorSelectorDelegate, BrushJoinDelegate, BrushCapDelegate {
+    
     var selectorView = BrushSelectorView()
+    
+    var isPortrait: Bool = true
     
     var _red: CGFloat = 1.0
     var _green: CGFloat = 1.0
@@ -40,10 +43,12 @@ class BrushSelectorViewController: UIViewController, ColorSelectorDelegate, Brus
         brushCapSubView.delegate = self
         
         view = selectorView
+        
+        self.title = "Brush Selector"
     }
     
     override func viewDidLoad() {
-        
+        isPortrait = UIDevice.current.orientation.isPortrait
     }
     
     func colorSelector(colorSelector: ColorSelectorView, movedToValue value: CGFloat, asColor color: String) {
@@ -70,5 +75,14 @@ class BrushSelectorViewController: UIViewController, ColorSelectorDelegate, Brus
         lineJoin = style
         let color: CGColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [_red,_green,_blue,1.0])!
         delegate?.brushSelected(brushSelector: self, withColor: color, andWidth: width, andLineJoin: lineJoin, andAlsoLineCap: lineCap)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isPortrait {
+            isPortrait = true
+        }
+        else {
+            isPortrait = false
+        }
     }
 }

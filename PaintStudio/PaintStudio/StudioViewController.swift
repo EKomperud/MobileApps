@@ -18,6 +18,7 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
         studioView.delegate = self
         brushSelector.delegate = self
         view = studioView
+        self.title = "Studio"
     }
     
     override func viewDidLoad() {
@@ -50,4 +51,6 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
     func brushSelect(studio: StudioView) {
         navigationController?.pushViewController(brushSelector, animated: true)
     }
+
+    
 }

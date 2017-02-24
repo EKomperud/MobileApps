@@ -29,7 +29,7 @@ class BrushSelectorView: UIView {
     init() {
         super.init(frame: CGRect(x:0.0, y:0.0, width:200, height: 300))
         
-        //let title: UILabel = UILabel(frame: CGRect(x: frame.width / 2 - 125, y: 20.0, width: 250, height: 50))
+        let title: UILabel = UILabel(frame: CGRect(x: frame.width / 2 - 125, y: 20.0, width: 250, height: 50))
         title.text = "Brush Selector"
         title.textColor = UIColor.white
         title.textAlignment = NSTextAlignment.center
@@ -37,21 +37,11 @@ class BrushSelectorView: UIView {
         
         let backButton = UIButton()
         
-        
-        redSelector.frame = CGRect(x: bounds.width / 2, y: 90.0, width: 250, height: 50)
-        
-        greenSelector.frame = CGRect(x: frame.width / 2, y: 160.0, width: 250, height: 50)
-        
-        blueSelector.frame = CGRect(x: frame.width / 2, y: 230.0, width: 250, height: 50)
-        
-        widthSelector.frame = CGRect(x: 40, y: (frame.height / 2) + 20, width: frame.width - 80, height: 30)
         widthSelector.minimumValue = 0.5
         widthSelector.maximumValue = 50.0
         widthSelector.addTarget(self, action: #selector(widthSliderChanged), for: UIControlEvents.valueChanged)
         
-        joinSelector.frame = CGRect(x: frame.width / 2, y: (frame.height / 2) + 160, width: 250, height: 60)
-        
-        capSelector.frame = CGRect(x: frame.width / 2, y: (frame.height / 2) + 70, width: 250, height: 60)
+
         
         brushExample.frame = CGRect(x: frame.width / 2, y: frame.height - 140, width:300, height: 140)
         brushExample.backgroundColor = UIColor.clear
@@ -84,15 +74,39 @@ class BrushSelectorView: UIView {
     }
     
     override func layoutSubviews() {
-        var r: CGRect = bounds
-        (title.bounds, r) = r.divided(atDistance: r.height * 0.2, from: .minYEdge)
-        (redSelector.bounds, r) = r.divided(atDistance: r.height * 0.25, from: .minYEdge)
-        (greenSelector.bounds, r) = r.divided(atDistance: r.height * 0.333, from: .minYEdge)
-        (blueSelector.bounds, r) = r.divided(atDistance: r.height * 0.5, from: .minYEdge)
-        (widthSelector.bounds, r) = r.divided(atDistance: r.height * 1, from: .minYEdge)
+//        var r: CGRect = bounds
+//        (title.frame, r) = r.divided(atDistance: r.height * 0.2, from: .minYEdge)
+//        (redSelector.frame, r) = r.divided(atDistance: r.height * 0.25, from: .minYEdge)
+//        (greenSelector.frame, r) = r.divided(atDistance: r.height * 0.333, from: .minYEdge)
+//        (blueSelector.frame, r) = r.divided(atDistance: r.height * 0.5, from: .minYEdge)
+//        (widthSelector.frame, r) = r.divided(atDistance: r.height * 1, from: .minYEdge)
+        if UIDevice.current.orientation == UIDeviceOrientation.portrait {
+            redSelector.frame = CGRect(x: bounds.width / 2, y: 90.0, width: 250, height: 50)
+            redSelector.center = CGPoint(x: self.frame.width / 2 , y: self.frame.height * 0.10 + 35)
+            
+            greenSelector.frame = CGRect(x: frame.width / 2, y: 160.0, width: 250, height: 50)
+            greenSelector.center = CGPoint(x: self.frame.width / 2 , y: self.frame.height * 0.2 + 35)
+            
+            blueSelector.frame = CGRect(x: frame.width / 2, y: 160.0, width: 250, height: 50)
+            blueSelector.center = CGPoint(x: self.frame.width / 2 , y: self.frame.height * 0.3 + 35)
+            
+            widthSelector.frame = CGRect(x: 40, y: (frame.height / 2) + 20, width: 250, height: 30)
+            widthSelector.center = CGPoint(x: self.frame.width / 2, y: self.frame.height * 0.4 + 35)
+            
+            joinSelector.frame = CGRect(x: frame.width / 2, y: (frame.height / 2) + 160, width: 250, height: 60)
+            joinSelector.center = CGPoint(x: self.frame.width / 2, y: self.frame.height * 0.5 + 35)
+            
+            capSelector.frame = CGRect(x: frame.width / 2, y: (frame.height / 2) + 70, width: 250, height: 60)
+            capSelector.center = CGPoint(x: self.frame.width / 2, y: self.frame.height * 0.625 + 35)
+        }
+        else {
+            
+        }
     }
     
     func widthSliderChanged (sender: UISlider) {
         width = sender.value
     }
+    
+    
 }
