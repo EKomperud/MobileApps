@@ -12,18 +12,18 @@ protocol BrushSelectorDelegate: class {
     func brushSelected(brushSelector: BrushSelectorViewController, withColor color: CGColor, andWidth width: Float, andLineJoin lj: CGLineJoin, andAlsoLineCap lc: CGLineCap)
 }
 
-class BrushSelectorViewController: UIViewController, UINavigationControllerDelegate, ColorSelectorDelegate, BrushJoinDelegate, BrushCapDelegate {
+class BrushSelectorViewController: UIViewController, UINavigationControllerDelegate, ColorSelectorDelegate, BrushJoinDelegate, BrushCapDelegate, WidthDelegate {
     
     var selectorView = BrushSelectorView()
     
     var isPortrait: Bool = true
     
-    var _red: CGFloat = 1.0
-    var _green: CGFloat = 1.0
-    var _blue: CGFloat = 1.0
-    var width: Float = 2.0
-    var lineJoin: CGLineJoin = CGLineJoin.round
-    var lineCap: CGLineCap = CGLineCap.round
+    var _red: CGFloat = 0.0
+    var _green: CGFloat = 0.0
+    var _blue: CGFloat = 0.0
+    var _width: Float = 2.0
+    var _lineJoin: CGLineJoin = CGLineJoin.round
+    var _lineCap: CGLineCap = CGLineCap.round
     var delegate: BrushSelectorDelegate? = nil
     
     override func loadView() {
@@ -43,6 +43,8 @@ class BrushSelectorViewController: UIViewController, UINavigationControllerDeleg
         brushCapSubView.delegate = self
         
         view = selectorView
+        selectorView.backgroundColor = UIColor.darkGray
+        selectorView.delegate = self
         
         self.title = "Brush Selector"
     }
@@ -61,20 +63,50 @@ class BrushSelectorViewController: UIViewController, UINavigationControllerDeleg
         if (color == "blue") {
             _blue = value
         }
+        // Update painting
         let newColor: CGColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [_red,_green,_blue,1.0])!
-        delegate?.brushSelected(brushSelector: self, withColor: newColor, andWidth: width, andLineJoin: lineJoin, andAlsoLineCap: lineCap)
+        delegate?.brushSelected(brushSelector: self, withColor: newColor, andWidth: _width, andLineJoin: _lineJoin, andAlsoLineCap: _lineCap)
+        
+        // Update example
+        let brushExample: BrushExampleView = selectorView.subviews[8] as! BrushExampleView
+        brushExample._color = newColor
+        brushExample.setNeedsDisplay()
     }
     
     func brushCap(brushCap: BrushCapView, StylePicked style: CGLineCap) {
-        lineCap = style
+        // Update painting
+        _lineCap = style
         let color: CGColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [_red,_green,_blue,1.0])!
-        delegate?.brushSelected(brushSelector: self, withColor: color, andWidth: width, andLineJoin: lineJoin, andAlsoLineCap: lineCap)
+        delegate?.brushSelected(brushSelector: self, withColor: color, andWidth: _width, andLineJoin: _lineJoin, andAlsoLineCap: _lineCap)
+        
+        // Update example
+        let brushExample: BrushExampleView = selectorView.subviews[8] as! BrushExampleView
+        brushExample._brushCapStyle = style
+        brushExample.setNeedsDisplay()
     }
     
     func brushJoin(brushJoin: BrushJoinView, StylePicked style: CGLineJoin) {
-        lineJoin = style
+        // Update painting
+        _lineJoin = style
         let color: CGColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [_red,_green,_blue,1.0])!
-        delegate?.brushSelected(brushSelector: self, withColor: color, andWidth: width, andLineJoin: lineJoin, andAlsoLineCap: lineCap)
+        delegate?.brushSelected(brushSelector: self, withColor: color, andWidth: _width, andLineJoin: _lineJoin, andAlsoLineCap: _lineCap)
+        
+        // Update example
+        let brushExample: BrushExampleView = selectorView.subviews[8] as! BrushExampleView
+        brushExample._brushJoinStyle = style
+        brushExample.setNeedsDisplay()
+    }
+    
+    func newWidth(brushSelector: BrushSelectorView, width: Float) {
+        // Update painting
+        _width = width
+        let color: CGColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [_red,_green,_blue,1.0])!
+        delegate?.brushSelected(brushSelector: self, withColor: color, andWidth: _width, andLineJoin: _lineJoin, andAlsoLineCap: _lineCap)
+        
+        // Update example
+        let brushExample: BrushExampleView = selectorView.subviews[8] as! BrushExampleView
+        brushExample._width = width
+        brushExample.setNeedsDisplay()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

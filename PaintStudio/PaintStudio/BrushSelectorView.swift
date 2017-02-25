@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol WidthDelegate: class {
+    func newWidth (brushSelector: BrushSelectorView, width: Float)
+}
+
 class BrushSelectorView: UIView {
+    
+    // Delegate
+    var delegate: WidthDelegate? = nil
     
     // Brush settings
     var width: Float = 2.0
@@ -29,21 +36,12 @@ class BrushSelectorView: UIView {
     init() {
         super.init(frame: CGRect(x:0.0, y:0.0, width:200, height: 300))
         
-        let title: UILabel = UILabel(frame: CGRect(x: frame.width / 2 - 125, y: 20.0, width: 250, height: 50))
-        title.text = "Brush Selector"
-        title.textColor = UIColor.white
-        title.textAlignment = NSTextAlignment.center
-        title.font = UIFont(name: "AmericanTypewriter", size: 30)
-        
         let backButton = UIButton()
         
         widthSelector.minimumValue = 0.5
         widthSelector.maximumValue = 50.0
         widthSelector.addTarget(self, action: #selector(widthSliderChanged), for: UIControlEvents.valueChanged)
         
-
-        
-        brushExample.frame = CGRect(x: frame.width / 2, y: frame.height - 140, width:300, height: 140)
         brushExample.backgroundColor = UIColor.clear
         
         self.addSubview(title)          // 0
@@ -55,9 +53,6 @@ class BrushSelectorView: UIView {
         self.addSubview(joinSelector)   // 6
         self.addSubview(capSelector)    // 7
         self.addSubview(brushExample)   // 8
-        
-
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,12 +69,6 @@ class BrushSelectorView: UIView {
     }
     
     override func layoutSubviews() {
-//        var r: CGRect = bounds
-//        (title.frame, r) = r.divided(atDistance: r.height * 0.2, from: .minYEdge)
-//        (redSelector.frame, r) = r.divided(atDistance: r.height * 0.25, from: .minYEdge)
-//        (greenSelector.frame, r) = r.divided(atDistance: r.height * 0.333, from: .minYEdge)
-//        (blueSelector.frame, r) = r.divided(atDistance: r.height * 0.5, from: .minYEdge)
-//        (widthSelector.frame, r) = r.divided(atDistance: r.height * 1, from: .minYEdge)
         if UIDevice.current.orientation == UIDeviceOrientation.portrait {
             redSelector.frame = CGRect(x: bounds.width / 2, y: 90.0, width: 250, height: 50)
             redSelector.center = CGPoint(x: self.frame.width / 2 , y: self.frame.height * 0.10 + 35)
@@ -98,6 +87,9 @@ class BrushSelectorView: UIView {
             
             capSelector.frame = CGRect(x: frame.width / 2, y: (frame.height / 2) + 70, width: 250, height: 60)
             capSelector.center = CGPoint(x: self.frame.width / 2, y: self.frame.height * 0.625 + 35)
+            
+            brushExample.frame = CGRect(x: frame.width / 2, y: frame.height - 140, width:300, height: 140)
+            brushExample.center = CGPoint(x: self.frame.width / 2, y: self.frame.height * 0.85 + 35)
         }
         else {
             
@@ -105,7 +97,7 @@ class BrushSelectorView: UIView {
     }
     
     func widthSliderChanged (sender: UISlider) {
-        width = sender.value
+        delegate?.newWidth(brushSelector: self, width: sender.value)
     }
     
     
