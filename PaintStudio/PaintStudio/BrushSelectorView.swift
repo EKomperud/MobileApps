@@ -92,7 +92,26 @@ class BrushSelectorView: UIView {
             brushExample.center = CGPoint(x: self.frame.width / 2, y: self.frame.height * 0.85 + 35)
         }
         else {
+            redSelector.frame = CGRect(x: bounds.width / 2, y: 90.0, width: 250, height: 50)
+            redSelector.center = CGPoint(x: self.frame.width / 4 , y: self.frame.height * 0.2 + 20)
             
+            greenSelector.frame = CGRect(x: frame.width / 2, y: 160.0, width: 250, height: 50)
+            greenSelector.center = CGPoint(x: self.frame.width / 4 , y: self.frame.height * 0.4 + 20)
+            
+            blueSelector.frame = CGRect(x: frame.width / 2, y: 160.0, width: 250, height: 50)
+            blueSelector.center = CGPoint(x: self.frame.width / 4 , y: self.frame.height * 0.6 + 20)
+            
+            widthSelector.frame = CGRect(x: 40, y: (frame.height / 2) + 20, width: 250, height: 30)
+            widthSelector.center = CGPoint(x: self.frame.width / 4, y: self.frame.height * 0.8 + 20)
+            
+            joinSelector.frame = CGRect(x: frame.width / 2, y: (frame.height / 2) + 160, width: 250, height: 60)
+            joinSelector.center = CGPoint(x: self.frame.width * 0.75 , y: self.frame.height * 0.25 + 20)
+            
+            capSelector.frame = CGRect(x: frame.width / 2, y: (frame.height / 2) + 70, width: 250, height: 60)
+            capSelector.center = CGPoint(x: self.frame.width * 0.75, y: self.frame.height * 0.5 + 20)
+            
+            brushExample.frame = CGRect(x: frame.width / 2, y: frame.height - 140, width:300, height: 140)
+            brushExample.center = CGPoint(x: self.frame.width * 0.75, y: self.frame.height * 0.75 + 20)
         }
     }
     
