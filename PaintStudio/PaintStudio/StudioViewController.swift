@@ -9,11 +9,11 @@
 import UIKit
 
 class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDelegate {
+    
     var studioView = StudioView()
     var studioModel = PaintingCollection()
     let brushSelector = BrushSelectorViewController()
 
-    
     override func loadView() {
         studioView.delegate = self
         brushSelector.delegate = self
@@ -42,10 +42,10 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
     }
     
     func brushSelected(brushSelector: BrushSelectorViewController, withColor color: CGColor, andWidth width: Float, andLineJoin lj: CGLineJoin, andAlsoLineCap lc: CGLineCap) {
-        studioView.color = color
-        studioView.width = width
-        studioView.lineJoin = lj
-        studioView.lineCap = lc
+        studioView.paintingView.color = color
+        studioView.paintingView.width = width
+        studioView.paintingView.lineJoin = lj
+        studioView.paintingView.lineCap = lc
     }
     
     func brushSelect(studio: StudioView) {

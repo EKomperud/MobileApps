@@ -11,7 +11,8 @@
 		E32475E11E5A916B00DAFC12 /* BrushSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32475E01E5A916B00DAFC12 /* BrushSelectorViewController.swift */; };
 		E32475E31E5A94AA00DAFC12 /* BrushSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32475E21E5A94AA00DAFC12 /* BrushSelectorView.swift */; };
 		E33B998D1E592836008383B3 /* StudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33B998C1E592836008383B3 /* StudioView.swift */; };
-		E3B8FDCE1E5FE9DB00694E1F /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B8FDCD1E5FE9DB00694E1F /* NavigationController.swift */; };
+		E3574E341E628DE800DFFC2D /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3574E331E628DE800DFFC2D /* CollectionViewController.swift */; };
+		E3574E361E62C0AB00DFFC2D /* PaintingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3574E351E62C0AB00DFFC2D /* PaintingView.swift */; };
 		E3D56C421E57C17B0021D9E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */; };
 		E3D56C491E57C17B0021D9E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D56C481E57C17B0021D9E2 /* Assets.xcassets */; };
 		E3D56C541E57C2C70021D9E2 /* StudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D56C531E57C2C70021D9E2 /* StudioViewController.swift */; };
@@ -31,7 +32,8 @@
 		E32475E01E5A916B00DAFC12 /* BrushSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushSelectorViewController.swift; sourceTree = "<group>"; };
 		E32475E21E5A94AA00DAFC12 /* BrushSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushSelectorView.swift; sourceTree = "<group>"; };
 		E33B998C1E592836008383B3 /* StudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudioView.swift; sourceTree = "<group>"; };
-		E3B8FDCD1E5FE9DB00694E1F /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		E3574E331E628DE800DFFC2D /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		E3574E351E62C0AB00DFFC2D /* PaintingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingView.swift; sourceTree = "<group>"; };
 		E3D56C3E1E57C17B0021D9E2 /* PaintStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaintStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D56C481E57C17B0021D9E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,8 +81,9 @@
 			isa = PBXGroup;
 			children = (
 				E3D56C411E57C17B0021D9E2 /* AppDelegate.swift */,
-				E3B8FDCD1E5FE9DB00694E1F /* NavigationController.swift */,
 				E3D56C551E57C8870021D9E2 /* PaintingCollection.swift */,
+				E3574E351E62C0AB00DFFC2D /* PaintingView.swift */,
+				E3574E331E628DE800DFFC2D /* CollectionViewController.swift */,
 				E33B998C1E592836008383B3 /* StudioView.swift */,
 				E3D56C531E57C2C70021D9E2 /* StudioViewController.swift */,
 				E32475E21E5A94AA00DAFC12 /* BrushSelectorView.swift */,
@@ -172,12 +175,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3574E361E62C0AB00DFFC2D /* PaintingView.swift in Sources */,
 				E32475E31E5A94AA00DAFC12 /* BrushSelectorView.swift in Sources */,
 				E33B998D1E592836008383B3 /* StudioView.swift in Sources */,
 				E3D56C561E57C8870021D9E2 /* PaintingCollection.swift in Sources */,
 				E3E3A5BC1E5E609A004014D3 /* BlueSelectorView.swift in Sources */,
+				E3574E341E628DE800DFFC2D /* CollectionViewController.swift in Sources */,
 				E3E3A5C01E5E60B9004014D3 /* BrushCapView.swift in Sources */,
-				E3B8FDCE1E5FE9DB00694E1F /* NavigationController.swift in Sources */,
 				E3D56C541E57C2C70021D9E2 /* StudioViewController.swift in Sources */,
 				E3E3A5BA1E5E6096004014D3 /* GreenSelectorView.swift in Sources */,
 				E3D56C421E57C17B0021D9E2 /* AppDelegate.swift in Sources */,

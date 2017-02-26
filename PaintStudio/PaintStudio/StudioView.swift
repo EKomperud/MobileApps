@@ -14,18 +14,24 @@ protocol StudioDelegate: class {
     func created(studio: StudioView, withCanvas painting: Painting)
     
     func brushSelect(studio: StudioView)
+    
+    func saveAndExit(studio: StudioView)
+    
+    func delete(studio: StudioView)
 }
 
-class StudioView: UIView {
+class StudioView: UIView, CanvasDelegate {
     
-    // Brush settings
-    var width: Float = 2.0
-    var color: CGColor = UIColor.white.cgColor
-    var lineJoin: CGLineJoin = CGLineJoin.round
-    var lineCap: CGLineCap = CGLineCap.round
+    // Read-only
+    var readOnly: Bool = false
+    
+    // Buttons
+    var brushSelector: UIButton = UIButton()
+    var backButton: UIButton = UIButton()
+    var deleteButton: UIButton = UIButton()
     
     // Painting
-    let painting = Painting(AspectX: 100.0, AspectY: 200.0)
+    var paintingView: PaintingView = PaintingView()
     var index = 0
     
     // Current stroke
@@ -36,11 +42,23 @@ class StudioView: UIView {
     var recorded: Bool = false
     
     init() {
-        super.init(frame: CGRect())
-        let brushSelector: UIButton = UIButton(frame: CGRect(x: frame.width / 2, y: 20, width: 300, height: 100))
+        super.init(frame: CGRect.zero)
+
         brushSelector.setTitle("Brush Selector", for: .normal)
         brushSelector.addTarget(self, action: #selector(brushSelect), for: .touchUpInside)
+        
+        backButton.setTitle("Save and Exit", for: .normal)
+        backButton.addTarget(self, action: #selector(SaveAndExit), for: .touchUpInside)
+        
+        deleteButton.setTitle("Discard Painting", for: .normal)
+        deleteButton.addTarget(self, action: #selector(DiscardPainting), for: .touchUpInside)
+        
+        paintingView.backgroundColor = UIColor.white
+        
+        self.addSubview(paintingView)
         self.addSubview(brushSelector)
+        self.addSubview(backButton)
+        self.addSubview(deleteButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,88 +66,43 @@ class StudioView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-
         if !recorded {
-            delegate?.created(studio: self, withCanvas: painting)
+            delegate?.created(studio: self, withCanvas: paintingView.painting)
             recorded = true
         }
-        
-        let context: CGContext = UIGraphicsGetCurrentContext()!
-        
-        for s in painting.strokes {
-            context.setStrokeColor(s.color)
-            context.setLineCap(s.lineCap)
-            context.setLineJoin(s.lineJoin)
-            context.setLineWidth(CGFloat(s.width))
-            context.move(to: CGPoint(x: CGFloat((s.points.first?.x)!) * painting.aspectX, y: CGFloat((s.points.first?.y)!) * painting.aspectY))
-            for point in s.points {
-                context.addLine(to: CGPoint(x: CGFloat(point.x) * painting.aspectX, y: CGFloat(point.y) * painting.aspectY))
-            }
-            context.drawPath(using: .stroke)
-        }
-        
-        if !stroke.IsEmpty() {
-            context.setStrokeColor(color)
-            context.setLineCap(lineCap)
-            context.setLineJoin(lineJoin)
-            context.setLineWidth(CGFloat(width))
-            context.move(to: CGPoint(x: CGFloat((stroke.points.first?.x)!) * painting.aspectX, y: CGFloat((stroke.points.first?.y)!) * painting.aspectY))
-            for point in stroke.points {
-                context.addLine(to: CGPoint(x: CGFloat(point.x) * painting.aspectX, y: CGFloat(point.y) * painting.aspectY))
-            }
-        }
-        context.drawPath(using: CGPathDrawingMode.stroke)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Create new stroke
-        stroke = Stroke(W: width, C: color, Join: lineJoin, Cap: lineCap)
+    override func layoutSubviews() {
+        brushSelector.frame =  CGRect(x: self.frame.width / 2, y: 20, width: 120, height: 25)
+        brushSelector.center = CGPoint(x: self.frame.width / 5, y: 80)
         
-        // Get X and Y positions
-        let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: self)
-        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
+        backButton.frame =  CGRect(x: self.frame.width / 2, y: 20, width: 110, height: 25)
+        backButton.center = CGPoint(x: self.frame.width / 2, y: 100)
         
-        // Add point to stroke
-        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
+        deleteButton.frame =  CGRect(x: self.frame.width / 2, y: 20, width: 135, height: 25)
+        deleteButton.center = CGPoint(x: self.frame.width * (4 / 5), y: 120)
         
-        // Redraw lines
-        setNeedsDisplay()
+        paintingView.frame = CGRect(x: 0, y: 150, width: self.frame.width, height: self.frame.height - 150)
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Get X and Y positions
-        let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: self)
-        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
-        
-        // Add point to stroke
-        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
-        
-        // Redraw lines
-        setNeedsDisplay()
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Get X and Y positions
-        let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: self)
-        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
-        
-        // Add point to stroke
-        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
-        
-        // Add stroke to painting
-        painting.AddStroke(stroke: stroke)
-        
-        // Redraw lines
-        setNeedsDisplay()
-        
-        // Send delegation
-        delegate?.studio(studio: self, painted: stroke)
+    func Painted(Canvas: PaintingView, painted: Stroke) {
+        delegate?.studio(studio: self, painted: painted)
     }
     
     func brushSelect() {
-        delegate.brushSelect(studio: self)
+        delegate?.brushSelect(studio: self)
+    }
+    
+    func SaveAndExit() {
+        
+    }
+    
+    func DiscardPainting() {
+        
+    }
+    
+    func chageReadOnlyStatus() -> Bool {
+        readOnly = !readOnly
+        return readOnly
     }
 }
