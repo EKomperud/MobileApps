@@ -12,6 +12,7 @@ class PaintingCollection {
     
     // Array of paintings
     var collection = Array<Painting>()
+    
     var count: Int {
         return collection.count
     }
@@ -27,6 +28,7 @@ class PaintingCollection {
     func GetPainting(index: Int) -> Painting {
         return collection[index]
     }
+    
 }
 
 class Painting {

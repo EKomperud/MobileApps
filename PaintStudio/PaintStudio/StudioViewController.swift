@@ -8,11 +8,21 @@
 
 import UIKit
 
+protocol StudioControllerDelegate: class {
+    func PassOffToCollection(deleted: Bool)
+    
+    func Created(studio: StudioView, withCanvas painting: Painting)
+    
+    func Painted(studio: StudioView, stroke: Stroke)
+}
+
 class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDelegate {
     
     var studioView = StudioView()
     var studioModel = PaintingCollection()
     let brushSelector = BrushSelectorViewController()
+    
+    var delegate: StudioControllerDelegate? = nil
 
     override func loadView() {
         studioView.delegate = self
@@ -30,15 +40,11 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
     }
     
     func studio(studio: StudioView, painted stroke: Stroke) {
-        studioModel.collection[studio.index].AddStroke(stroke: stroke)
+        delegate?.Painted(studio: studio, stroke: stroke)
     }
     
     func created(studio: StudioView, withCanvas painting: Painting) {
-        let index: Int = studioModel.count
-        studioModel.AddPainting(p: painting)
-        studioModel.collection[index].index = index
-        studioView = studio
-        studioView.index = index
+        delegate?.Created(studio: studio, withCanvas: painting)
     }
     
     func brushSelected(brushSelector: BrushSelectorViewController, withColor color: CGColor, andWidth width: Float, andLineJoin lj: CGLineJoin, andAlsoLineCap lc: CGLineCap) {
@@ -52,5 +58,11 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
         navigationController?.pushViewController(brushSelector, animated: true)
     }
 
+    func saveAndExit(studio: StudioView) {
+        delegate?.PassOffToCollection(deleted: false)
+    }
     
+    func delete(studio: StudioView) {
+        delegate?.PassOffToCollection(deleted: true)
+    }
 }

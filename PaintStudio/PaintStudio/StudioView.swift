@@ -22,9 +22,6 @@ protocol StudioDelegate: class {
 
 class StudioView: UIView, CanvasDelegate {
     
-    // Read-only
-    var readOnly: Bool = false
-    
     // Buttons
     var brushSelector: UIButton = UIButton()
     var backButton: UIButton = UIButton()
@@ -99,10 +96,5 @@ class StudioView: UIView, CanvasDelegate {
     
     func DiscardPainting() {
         
-    }
-    
-    func chageReadOnlyStatus() -> Bool {
-        readOnly = !readOnly
-        return readOnly
     }
 }
