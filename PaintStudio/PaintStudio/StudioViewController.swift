@@ -32,7 +32,8 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
     }
     
     override func viewDidLoad() {
-        
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationItem.hidesBackButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,4 +66,6 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
     func delete(studio: StudioView) {
         delegate?.PassOffToCollection(deleted: true)
     }
+    
+    
 }

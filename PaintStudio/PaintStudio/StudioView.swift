@@ -91,10 +91,10 @@ class StudioView: UIView, CanvasDelegate {
     }
     
     func SaveAndExit() {
-        
+        delegate?.saveAndExit(studio: self)
     }
     
     func DiscardPainting() {
-        
+        delegate?.delete(studio: self)
     }
 }

@@ -8,13 +8,9 @@
 
 import UIKit
 
-protocol CollectionControllerDelegate: class {
-    func PassOffToStudio(painting: Painting)
-}
-
-class CollectionViewController: UIViewController {
+class CollectionViewController: UIViewController, StudioControllerDelegate {
     
-    var delegate: CollectionControllerDelegate? = nil
+    var studioController = StudioViewController()
     
     var paintingCollection = PaintingCollection()
     
@@ -26,6 +22,7 @@ class CollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        studioController.delegate = self
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 0
@@ -42,8 +39,22 @@ class CollectionViewController: UIViewController {
         view = collectionView
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    // StudioControllerDelegate
+    func PassOffToCollection(deleted: Bool) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // StudioControllerDelegate
+    func Created(studio: StudioView, withCanvas painting: Painting) {
+        let index: Int = paintingCollection.count
+        paintingCollection.AddPainting(p: painting)
+        paintingCollection.collection[index].index = index
+        studioController.studioView = studio
+        studioController.studioView.index = index
+    }
+    
+    func Painted(studio: StudioView, stroke: Stroke) {
+        paintingCollection.collection[studio.index].AddStroke(stroke: stroke)
     }
 
 }
@@ -65,24 +76,26 @@ extension CollectionViewController:  UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        let paintingCell = cell as! PaintingPreview
-//        //paintingCell.
-//    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let paintingCell = cell as! PaintingPreview
+        paintingCell.Load(Painting: paintingCollection.collection[indexPath.item])
+        cell.setNeedsDisplay()
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: paintingCollection.collection[indexPath.item].aspectX, height: paintingCollection.collection[indexPath.item].aspectY)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(view.frame.height)
         print(indexPath.item)
         print(indexPath.row)
-        if indexPath[0] == paintingCollection.count {
+        if indexPath[0] == paintingCollection.count - 1 {
             paintingCollection.AddPainting(p: Painting(AspectX: 100, AspectY: 200))
             paintingCollection.collection.last?.index = paintingCollection.count - 1
         }
-        delegate?.PassOffToStudio(painting: paintingCollection.collection[indexPath[0]])
+        //delegate?.PassOffToStudio(painting: paintingCollection.collection[indexPath[0]])
+        studioController.studioView.paintingView.painting = paintingCollection.collection[indexPath.item]
+        navigationController?.pushViewController(studioController, animated: true)
     }
     
 }

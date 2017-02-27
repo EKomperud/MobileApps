@@ -9,23 +9,16 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIViewController, UIApplicationDelegate, CollectionControllerDelegate, StudioControllerDelegate {
+class AppDelegate: UIViewController, UIApplicationDelegate {
 
     var window: UIWindow?
     var orientationLock = UIInterfaceOrientationMask.all
-    
-    let studioController = StudioViewController()
-    let collectionController = CollectionViewController()
-    let brushController = BrushSelectorViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
-        window?.rootViewController = UINavigationController(rootViewController: collectionController)
+        window?.rootViewController = UINavigationController(rootViewController: CollectionViewController())
         window?.makeKeyAndVisible()
-        
-        collectionController.delegate = self
-        studioController.delegate = self
         
         return true
     }
@@ -51,29 +44,6 @@ class AppDelegate: UIViewController, UIApplicationDelegate, CollectionController
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    // CollectionControllerDelegate
-    func PassOffToStudio(painting: Painting) {
-        studioController.studioView.paintingView.painting = painting
-        navigationController?.pushViewController(studioController, animated: true)
-    }
-    
-    // StudioControllerDelegate
-    func PassOffToCollection(deleted: Bool) {
-        navigationController?.pushViewController(collectionController, animated: true)
-    }
-    
-    // StudioControllerDelegate
-    func Created(studio: StudioView, withCanvas painting: Painting) {
-        let index: Int = collectionController.paintingCollection.count
-        collectionController.paintingCollection.AddPainting(p: painting)
-        collectionController.paintingCollection.collection[index].index = index
-        studioController.studioView = studio
-        studioController.studioView.index = index
-    }
-    
-    func Painted(studio: StudioView, stroke: Stroke) {
-        collectionController.paintingCollection.collection[studio.index].AddStroke(stroke: stroke)
-    }
+
 }
 
