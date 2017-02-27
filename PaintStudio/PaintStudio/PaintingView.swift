@@ -12,10 +12,7 @@ protocol CanvasDelegate: class {
     func Painted(Canvas: PaintingView, painted: Stroke)
 }
 
-class PaintingView: UICollectionViewCell {
-    
-    // ReadOnly
-    var readOnly: Bool = false
+class PaintingView: UIView {
     
     // Painting
     var painting: Painting = Painting(AspectX: 100, AspectY: 200)
@@ -62,61 +59,50 @@ class PaintingView: UICollectionViewCell {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !readOnly {
-            // Create new stroke
-            stroke = Stroke(W: width, C: color, Join: lineJoin, Cap: lineCap)
-            
-            // Get X and Y positions
-            let touch: UITouch = touches.first!
-            let touchPoint: CGPoint = touch.location(in: self)
-            let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
-            
-            // Add point to stroke
-            stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
-            
-            // Redraw lines
-            setNeedsDisplay()
-        }
+        // Create new stroke
+        stroke = Stroke(W: width, C: color, Join: lineJoin, Cap: lineCap)
+        
+        // Get X and Y positions
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: self)
+        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
+        
+        // Add point to stroke
+        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
+        
+        // Redraw lines
+        setNeedsDisplay()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !readOnly {
-            // Get X and Y positions
-            let touch: UITouch = touches.first!
-            let touchPoint: CGPoint = touch.location(in: self)
-            let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
-            
-            // Add point to stroke
-            stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
-            
-            // Redraw lines
-            setNeedsDisplay()
-        }
+        // Get X and Y positions
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: self)
+        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
+        
+        // Add point to stroke
+        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
+        
+        // Redraw lines
+        setNeedsDisplay()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !readOnly {
-            // Get X and Y positions
-            let touch: UITouch = touches.first!
-            let touchPoint: CGPoint = touch.location(in: self)
-            let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
-            
-            // Add point to stroke
-            stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
-            
-            // Add stroke to painting
-            painting.AddStroke(stroke: stroke)
-            
-            // Redraw lines
-            setNeedsDisplay()
-            
-            // Send delegation
-            delegate?.Painted(Canvas: self, painted: stroke)
-        }
+        // Get X and Y positions
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: self)
+        let modelPoint: CGPoint = CGPoint(x: touchPoint.x / painting.aspectX, y: touchPoint.y / painting.aspectY)
+        
+        // Add point to stroke
+        stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
+        
+        // Add stroke to painting
+        painting.AddStroke(stroke: stroke)
+        
+        // Redraw lines
+        setNeedsDisplay()
+        
+        // Send delegation
+        delegate?.Painted(Canvas: self, painted: stroke)
     }
-    
-    func chageReadOnlyStatus() {
-        readOnly = !readOnly
-    }
-    
 }

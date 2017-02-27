@@ -21,15 +21,11 @@ class AppDelegate: UIViewController, UIApplicationDelegate, CollectionController
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
-        window?.rootViewController = UINavigationController(rootViewController: CollectionViewController())
-        //collectionController.SetupView()
+        window?.rootViewController = UINavigationController(rootViewController: collectionController)
         window?.makeKeyAndVisible()
         
-        
-        
-        //window?.rootViewController?.view.backgroundColor = UIColor.darkGray
-        
-        
+        collectionController.delegate = self
+        studioController.delegate = self
         
         return true
     }

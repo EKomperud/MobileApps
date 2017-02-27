@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PaintStudio/CollectionViewController.swift"
-            timestampString = "509871700.535525"
+            filePath = "PaintStudio/AppDelegate.swift"
+            timestampString = "509924583.899508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "PassOffToStudio(painting:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
