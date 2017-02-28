@@ -17,9 +17,9 @@ protocol StudioDelegate: class {
     
     func brushSelect(studio: StudioView)
     
-    func saveAndExit(studio: StudioView)
+    func saveAndExit(i: Int)
     
-    func delete(studio: StudioView)
+    func delete(i: Int)
 }
 
 class StudioView: UIView, CanvasDelegate {
@@ -100,10 +100,10 @@ class StudioView: UIView, CanvasDelegate {
     }
     
     func SaveAndExit() {
-        delegate?.saveAndExit(studio: self)
+        delegate?.saveAndExit(i: paintingView.painting.index)
     }
     
     func DiscardPainting() {
-        delegate?.delete(studio: self)
+        delegate?.delete(i: paintingView.painting.index)
     }
 }

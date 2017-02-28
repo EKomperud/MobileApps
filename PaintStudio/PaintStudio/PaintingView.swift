@@ -191,15 +191,15 @@ class PaintingView: UIView {
         if add {
             // Add point to stroke
             stroke.AddPoint(X: Float(modelPoint.x), Y: Float(modelPoint.y))
-            
-            // Add stroke to painting
-            painting.AddStroke(stroke: stroke)
-            
-            // Redraw lines
-            setNeedsDisplay()
-            
-            // Send delegation
-            delegate?.Painted(Canvas: self, painted: stroke)
         }
+        
+        // Add stroke to painting
+        painting.AddStroke(stroke: stroke)
+        
+        // Redraw lines
+        setNeedsDisplay()
+        
+        // Send delegation
+        delegate?.Painted(Canvas: self, painted: stroke)
     }
 }

@@ -22,6 +22,7 @@ class CollectionViewController: UIViewController, StudioControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Painting Collection"
         studioController.delegate = self
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 5
@@ -40,7 +41,13 @@ class CollectionViewController: UIViewController, StudioControllerDelegate {
     }
     
     // StudioControllerDelegate
-    func PassOffToCollection(deleted: Bool) {
+    func PassOffToCollection(deleted: Bool, i: Int) {
+        if deleted {
+            paintingCollection.RemovePainting(index: i)
+            for p in i...paintingCollection.count - 1 {
+                paintingCollection.collection[p].index -= 1
+            }
+        }
         navigationController?.popViewController(animated: true)
         collectionView.reloadData()
     }

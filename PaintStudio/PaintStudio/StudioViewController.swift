@@ -9,7 +9,7 @@
 import UIKit
 
 protocol StudioControllerDelegate: class {
-    func PassOffToCollection(deleted: Bool)
+    func PassOffToCollection(deleted: Bool, i: Int)
     
     func SendAspect(i: Int, x: CGFloat, y: CGFloat)
     
@@ -65,12 +65,12 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
         navigationController?.pushViewController(brushSelector, animated: true)
     }
 
-    func saveAndExit(studio: StudioView) {
-        delegate?.PassOffToCollection(deleted: false)
+    func saveAndExit(i: Int) {
+        delegate?.PassOffToCollection(deleted: false, i: i)
     }
     
-    func delete(studio: StudioView) {
-        delegate?.PassOffToCollection(deleted: true)
+    func delete(i: Int) {
+        delegate?.PassOffToCollection(deleted: true, i: i)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
