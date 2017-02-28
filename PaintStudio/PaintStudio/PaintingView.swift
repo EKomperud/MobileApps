@@ -21,6 +21,7 @@ class PaintingView: UIView {
     var _aspectSent: Bool = false
     var _tempX: CGFloat = 0
     var _tempY: CGFloat = 0
+    var _ratio: Float = 0.0
     
     // Brush settings
     var width: Float = 2.0
@@ -46,10 +47,10 @@ class PaintingView: UIView {
             let ratioX = frame.width / painting.aspectX
             let ratioY = frame.height / painting.aspectY
             if ratioX < ratioY {
-                _tempX = painting.aspectX * ratioX; _tempY = painting.aspectY * ratioX
+                _tempX = painting.aspectX * ratioX; _tempY = painting.aspectY * ratioX; _ratio = Float(ratioX)
             }
             else {
-                _tempX = painting.aspectX * ratioY; _tempY = painting.aspectY * ratioY
+                _tempX = painting.aspectX * ratioY; _tempY = painting.aspectY * ratioY; _ratio = Float(ratioY)
             }
             frame = CGRect(x: 0, y: 0, width: _tempX, height: _tempY)
         }
@@ -96,7 +97,7 @@ class PaintingView: UIView {
                 context.setStrokeColor(s.color)
                 context.setLineCap(s.lineCap)
                 context.setLineJoin(s.lineJoin)
-                context.setLineWidth(CGFloat(s.width))
+                context.setLineWidth(CGFloat(s.width * _ratio))
                 context.move(to: CGPoint(x: CGFloat((s.points.first?.x)!) * _tempX, y: CGFloat((s.points.first?.y)!) * _tempY))
                 for point in s.points {
                     context.addLine(to: CGPoint(x: CGFloat(point.x) * _tempX, y: CGFloat(point.y) * _tempY))
@@ -108,7 +109,7 @@ class PaintingView: UIView {
                 context.setStrokeColor(color)
                 context.setLineCap(lineCap)
                 context.setLineJoin(lineJoin)
-                context.setLineWidth(CGFloat(width))
+                context.setLineWidth(CGFloat(width * _ratio))
                 context.move(to: CGPoint(x: CGFloat((stroke.points.first?.x)!) * _tempX, y: CGFloat((stroke.points.first?.y)!) * _tempY))
                 for point in stroke.points {
                     context.addLine(to: CGPoint(x: CGFloat(point.x) * _tempX, y: CGFloat(point.y) * _tempY))
