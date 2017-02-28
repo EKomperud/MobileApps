@@ -37,8 +37,8 @@ class Painting {
     var strokes = Array<Stroke>()
     
     // Aspect ratio
-    let aspectX: CGFloat
-    let aspectY: CGFloat
+    var aspectX: CGFloat
+    var aspectY: CGFloat
     
     // Index
     var index: Int = 0

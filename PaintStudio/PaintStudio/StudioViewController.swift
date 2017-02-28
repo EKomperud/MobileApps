@@ -11,6 +11,8 @@ import UIKit
 protocol StudioControllerDelegate: class {
     func PassOffToCollection(deleted: Bool)
     
+    func SendAspect(i: Int, x: CGFloat, y: CGFloat)
+    
     func Created(studio: StudioView, withCanvas painting: Painting)
     
     func Painted(studio: StudioView, stroke: Stroke)
@@ -44,6 +46,10 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
         delegate?.Painted(studio: studio, stroke: stroke)
     }
     
+    func sendAspect(i: Int, x: CGFloat, y: CGFloat) {
+        delegate?.SendAspect(i: i, x: x, y: y)
+    }
+    
     func created(studio: StudioView, withCanvas painting: Painting) {
         delegate?.Created(studio: studio, withCanvas: painting)
     }
@@ -67,5 +73,11 @@ class StudioViewController: UIViewController, StudioDelegate, BrushSelectorDeleg
         delegate?.PassOffToCollection(deleted: true)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        view.setNeedsDisplay()
+        for v in view.subviews {
+            v.setNeedsDisplay()
+        }
+    }
     
 }

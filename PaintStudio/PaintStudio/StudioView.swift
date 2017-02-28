@@ -11,6 +11,8 @@ import UIKit
 protocol StudioDelegate: class {
     func studio(studio: StudioView, painted stroke: Stroke)
     
+    func sendAspect(i: Int, x: CGFloat, y: CGFloat)
+    
     func created(studio: StudioView, withCanvas painting: Painting)
     
     func brushSelect(studio: StudioView)
@@ -43,12 +45,15 @@ class StudioView: UIView, CanvasDelegate {
 
         brushSelector.setTitle("Brush Selector", for: .normal)
         brushSelector.addTarget(self, action: #selector(brushSelect), for: .touchUpInside)
+        //brushSelector.backgroundColor = UIColor.darkGray
         
         backButton.setTitle("Save and Exit", for: .normal)
         backButton.addTarget(self, action: #selector(SaveAndExit), for: .touchUpInside)
+        //backButton.backgroundColor = UIColor.darkGray
         
         deleteButton.setTitle("Discard Painting", for: .normal)
         deleteButton.addTarget(self, action: #selector(DiscardPainting), for: .touchUpInside)
+        //deleteButton.backgroundColor = UIColor.darkGray
         
         paintingView.backgroundColor = UIColor.white
         
@@ -63,10 +68,10 @@ class StudioView: UIView, CanvasDelegate {
     }
     
     override func draw(_ rect: CGRect) {
-        if !recorded {
-            delegate?.created(studio: self, withCanvas: paintingView.painting)
-            recorded = true
-        }
+//        if !recorded {
+//            delegate?.created(studio: self, withCanvas: paintingView.painting)
+//            recorded = true
+//        }
     }
     
     override func layoutSubviews() {
@@ -84,6 +89,10 @@ class StudioView: UIView, CanvasDelegate {
     
     func Painted(Canvas: PaintingView, painted: Stroke) {
         delegate?.studio(studio: self, painted: painted)
+    }
+    
+    func AspectSent(i: Int, x: CGFloat, y: CGFloat) {
+        delegate?.sendAspect(i: i, x: x, y: y)
     }
     
     func brushSelect() {
