@@ -13,6 +13,7 @@
 		E36108991E95ED0700B28F03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E36108981E95ED0700B28F03 /* Assets.xcassets */; };
 		E361089C1E95ED0700B28F03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E361089A1E95ED0700B28F03 /* LaunchScreen.storyboard */; };
 		E36108A41E95ED6700B28F03 /* Model_MonsterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */; };
+		E3A89D701E9F16B700F1EAC6 /* Controller_MonsterMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E361089B1E95ED0700B28F03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E361089D1E95ED0700B28F03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model_MonsterManager.swift; sourceTree = "<group>"; };
+		E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller_MonsterMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				E361089A1E95ED0700B28F03 /* LaunchScreen.storyboard */,
 				E361089D1E95ED0700B28F03 /* Info.plist */,
 				E36108911E95ED0700B28F03 /* AppDelegate.swift */,
+				E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */,
 				E36108931E95ED0700B28F03 /* Controller_MonsterManager.swift */,
 				E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */,
 			);
@@ -142,6 +145,7 @@
 				E36108941E95ED0700B28F03 /* Controller_MonsterManager.swift in Sources */,
 				E36108A41E95ED6700B28F03 /* Model_MonsterManager.swift in Sources */,
 				E36108921E95ED0700B28F03 /* AppDelegate.swift in Sources */,
+				E3A89D701E9F16B700F1EAC6 /* Controller_MonsterMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +307,7 @@
 				E36108A21E95ED0700B28F03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

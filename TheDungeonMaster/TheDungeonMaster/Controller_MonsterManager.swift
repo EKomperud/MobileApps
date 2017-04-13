@@ -30,13 +30,19 @@ extension MonsterManagerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Monsters.count
+        return Monsters.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = Monsters[indexPath.item]._Name
-        return cell
+        if (indexPath.item < Monsters.count) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Monster")
+            cell?.textLabel?.text = Monsters[indexPath.item]._Name
+            return cell!
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "+")
+            return cell!
+        }
     }
     
     // Convert Monsters to Dictionary to store in memory
