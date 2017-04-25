@@ -29,4 +29,8 @@ class MonsterMakerViewController: UIViewController {
     @IBOutlet weak var MonsterWisSave: UISwitch!
     @IBOutlet weak var MonsterChrSave: UISwitch!
     
+    @IBOutlet weak var SaveButton: UIBarButtonItem!
+    
+    
+    
 }
