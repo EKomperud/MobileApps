@@ -8,17 +8,25 @@
 
 import UIKit
 
-class MonsterManagerViewController: UIViewController {
+class MonsterManagerViewController: UIViewController, MonsterMakerDelegate {
     
     var Monsters = Array<Monster>()
+    
+    var makerController = MonsterMakerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Monsters.append(Monster(name: "Aboleth", hp: 128, ac: 18, toHit: 7))
+        Monsters.append(Monster(name: "Aboleth", hp: 128, ac: 18, prof: 7))
         (ToMonsterManual()).write(toFile: "/Users/Authenticated User/Desktop/Monsters.txt", atomically: true)
         let Monsters2: NSDictionary = NSDictionary(contentsOfFile: "/Users/Authenticated User/Desktop/Monsters.txt")!
         print(Monsters2["Aboleth"]!)
+        
+        makerController.delegate = self
+    }
+    
+    func SaveToManager(monster: Monster) {
+        Monsters.append(monster)
     }
     
 }
@@ -49,7 +57,7 @@ extension MonsterManagerViewController: UITableViewDataSource {
     func ToMonsterManual() -> NSDictionary {
         var MonsterManual = Dictionary<String, Array<Int>>()
         for Mon in Monsters {
-            let Attributes = [Mon._HP, Mon._AC, Mon._ToHit, Mon._Str, Mon._Dex, Mon._Con, Mon._Int, Mon._Wis, Mon._Chr]
+            let Attributes = [Mon._HP, Mon._AC, Mon._Prof, Mon._Str, Mon._Dex, Mon._Con, Mon._Int, Mon._Wis, Mon._Chr]
             MonsterManual[Mon._Name] = Attributes
         }
         return MonsterManual as NSDictionary
@@ -60,7 +68,7 @@ extension MonsterManagerViewController: UITableViewDataSource {
         var MonstersArray = Array<Monster>()
         for (Name, Attributes) in MonsterManual {
             let AttributesArray = Attributes as! Array<Int>
-            let Mon = Monster(name: Name as! String, hp: AttributesArray[0], ac: AttributesArray[1], toHit: AttributesArray[2])
+            let Mon = Monster(name: Name as! String, hp: AttributesArray[0], ac: AttributesArray[1], prof: AttributesArray[2])
             Mon._Str = AttributesArray[3]
             Mon._Dex = AttributesArray[4]
             Mon._Con = AttributesArray[5]

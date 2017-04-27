@@ -13,7 +13,7 @@ class Monster {
     
     var _HP: Int
     var _AC: Int
-    var _ToHit: Int
+    var _Prof: Int
     
     var _Str: Int = 0
     var _Dex: Int = 0
@@ -22,11 +22,35 @@ class Monster {
     var _Wis: Int = 0
     var _Chr: Int = 0
     
-    init(name: String, hp: Int, ac: Int, toHit: Int) {
-        _Name = name; _HP = hp; _AC = ac; _ToHit = toHit
+    var _Saves: Array = [false,false,false,false,false,false]
+    
+    init(name: String, hp: Int, ac: Int, prof: Int) {
+        _Name = name; _HP = hp; _AC = ac; _Prof = prof
     }
     
-    func SavingThrows(str: Int, dex: Int, con: Int, int: Int, wis: Int, chr: Int) {
+    func Stats(str: Int, dex: Int, con: Int, int: Int, wis: Int, chr: Int) {
         _Str = str; _Dex = dex; _Con = con; _Int = int; _Wis = wis; _Chr = chr
+    }
+    
+    func Saves(str: Bool, dex: Bool, con: Bool, int: Bool, wis: Bool, chr: Bool) {
+        _Saves[0] = str
+        _Saves[1] = dex
+        _Saves[2] = con
+        _Saves[3] = int
+        _Saves[4] = wis
+        _Saves[5] = chr
+    }
+    
+    func GetSave(stat: String) -> Int {
+        let s = stat.lowercased()
+        switch s {
+            case "str", "strength": return _Str + (_Saves[0] ? _Prof : 0)
+            case "dex", "dexterity": return _Dex + (_Saves[0] ? _Prof : 0)
+            case "con", "constitution": return _Con + (_Saves[0] ? _Prof : 0)
+            case "int", "intelligence": return _Int + (_Saves[0] ? _Prof : 0)
+            case "wis", "wisdom": return _Wis + (_Saves[0] ? _Prof : 0)
+            case "chr", "charisma": return _Chr + (_Saves[0] ? _Prof : 0)
+        default: return 0
+        }
     }
 }
