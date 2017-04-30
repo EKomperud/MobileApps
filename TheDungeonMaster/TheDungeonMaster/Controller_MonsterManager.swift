@@ -21,7 +21,7 @@ class MonsterManagerViewController: UIViewController, MonsterMakerDelegate {
     }
     
     // Holds a single monster object for data passing purposes
-    var MonsterData: Monster = Monster(name: "", hp: 10, ac: 10, prof: 10)
+    var TempMonster: Monster = Monster(name: "", hp: 10, ac: 10, prof: 10)
     
     // CoreData context
     var context: NSManagedObjectContext? = nil
@@ -44,15 +44,9 @@ class MonsterManagerViewController: UIViewController, MonsterMakerDelegate {
             Aboleth.Saves(str: false, dex: false, con: true, int: true, wis: true, chr: false)
             _Monsters.updateValue(Aboleth, forKey: "Aboleth")
             
-            saveMonsterToData(monster: Aboleth)
-            do
+            if saveMonsterToData(monster: Aboleth)
             {
-                try context?.save()
                 UserDefaults.standard.set(true, forKey: "appHasBeenLaunched")
-            }
-            catch
-            {
-                // Error
             }
         }
             
@@ -61,14 +55,16 @@ class MonsterManagerViewController: UIViewController, MonsterMakerDelegate {
             loadMonstersFromData()
         }
         
-//        deleteAllData(entity: "Monster")
+//        deleteAllData(entity: "MonsterData")
 //        UserDefaults.standard.set(false, forKey: "appHasBeenLaunched")
     }
     
     func SaveToManager(monster: Monster) {
-        _Monsters.updateValue(monster, forKey: monster._Name)
-        saveMonsterToData(monster: monster)
-        monsterTable?.reloadData()
+        if saveMonsterToData(monster: monster)
+        {
+            _Monsters.updateValue(monster, forKey: monster._Name)
+            monsterTable?.reloadData()
+        }
     }
     
     func ArrayToMonster(m: NSArray) -> Monster {
@@ -84,8 +80,8 @@ class MonsterManagerViewController: UIViewController, MonsterMakerDelegate {
             let indexPath: IndexPath = monsterTable!.indexPathForSelectedRow!
             let cell: UITableViewCell = monsterTable!.cellForRow(at: indexPath)!
             if (cell.reuseIdentifier == "Monster") {
-                MonsterData = _Monsters[MonsterNames[indexPath.item]]!
-                viewController.loadedMonster = MonsterData
+                TempMonster = _Monsters[MonsterNames[indexPath.item]]!
+                viewController.loadedMonster = TempMonster
             }
             viewController.delegate = self
 
@@ -116,8 +112,8 @@ extension MonsterManagerViewController: UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func saveMonsterToData(monster: Monster) {
-        let monsterData = NSEntityDescription.insertNewObject(forEntityName: "Monster", into: context!)
+    func saveMonsterToData(monster: Monster) -> Bool {
+        let monsterData = NSEntityDescription.insertNewObject(forEntityName: "MonsterData", into: context!)
         monsterData.setValue(monster._Name, forKey: "name")
         monsterData.setValue(monster._HP, forKey: "hp")
         monsterData.setValue(monster._AC, forKey: "ac")
@@ -128,16 +124,26 @@ extension MonsterManagerViewController: UITableViewDataSource, UITableViewDelega
         monsterData.setValue(monster._Int, forKey: "statInt")
         monsterData.setValue(monster._Wis, forKey: "statWis")
         monsterData.setValue(monster._Chr, forKey: "statChr")
-        monsterData.setValue(monster._Saves[0], forKey: "statStr")
-        monsterData.setValue(monster._Saves[1], forKey: "statDex")
-        monsterData.setValue(monster._Saves[2], forKey: "statCon")
-        monsterData.setValue(monster._Saves[3], forKey: "statInt")
-        monsterData.setValue(monster._Saves[4], forKey: "statWis")
-        monsterData.setValue(monster._Saves[5], forKey: "statChr")
+        monsterData.setValue(monster._Saves[0], forKey: "saveStr")
+        monsterData.setValue(monster._Saves[1], forKey: "saveDex")
+        monsterData.setValue(monster._Saves[2], forKey: "saveCon")
+        monsterData.setValue(monster._Saves[3], forKey: "saveInt")
+        monsterData.setValue(monster._Saves[4], forKey: "saveWis")
+        monsterData.setValue(monster._Saves[5], forKey: "saveChr")
+        
+        do
+        {
+            try context?.save()
+            return true
+        }
+        catch
+        {
+            return false
+        }
     }
     
     func loadMonstersFromData() {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Monster")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "MonsterData")
         request.returnsObjectsAsFaults = false
         do
         {
@@ -163,17 +169,17 @@ extension MonsterManagerViewController: UITableViewDataSource, UITableViewDelega
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        fetchRequest.returnsObjectsAsFaults = false
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        request.returnsObjectsAsFaults = false
         
         do
         {
-            let results = try context?.fetch(fetchRequest)
-            for managedObject in results!
+            let results = try context?.fetch(request)
+            for result in results as! [NSManagedObject]
             {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                context?.delete(managedObjectData)
+                context?.delete(result)
             }
+            try context?.save()
         } catch let error as NSError {
             print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
