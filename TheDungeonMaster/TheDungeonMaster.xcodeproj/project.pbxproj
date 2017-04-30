@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E304C57F1EB5775D009DF605 /* MonsterModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E304C57D1EB5775D009DF605 /* MonsterModel.xcdatamodeld */; };
 		E36108921E95ED0700B28F03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36108911E95ED0700B28F03 /* AppDelegate.swift */; };
 		E36108941E95ED0700B28F03 /* Controller_MonsterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36108931E95ED0700B28F03 /* Controller_MonsterManager.swift */; };
 		E36108971E95ED0700B28F03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36108951E95ED0700B28F03 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E304C57E1EB5775D009DF605 /* MonsterModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MonsterModel.xcdatamodel; sourceTree = "<group>"; };
 		E361088E1E95ED0700B28F03 /* TheDungeonMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheDungeonMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36108911E95ED0700B28F03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E36108931E95ED0700B28F03 /* Controller_MonsterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller_MonsterManager.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				E36108911E95ED0700B28F03 /* AppDelegate.swift */,
 				E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */,
 				E36108931E95ED0700B28F03 /* Controller_MonsterManager.swift */,
+				E304C57D1EB5775D009DF605 /* MonsterModel.xcdatamodeld */,
 				E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */,
 			);
 			path = TheDungeonMaster;
@@ -144,6 +147,7 @@
 			files = (
 				E36108941E95ED0700B28F03 /* Controller_MonsterManager.swift in Sources */,
 				E36108A41E95ED6700B28F03 /* Model_MonsterManager.swift in Sources */,
+				E304C57F1EB5775D009DF605 /* MonsterModel.xcdatamodeld in Sources */,
 				E36108921E95ED0700B28F03 /* AppDelegate.swift in Sources */,
 				E3A89D701E9F16B700F1EAC6 /* Controller_MonsterMaker.swift in Sources */,
 			);
@@ -310,6 +314,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E304C57D1EB5775D009DF605 /* MonsterModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E304C57E1EB5775D009DF605 /* MonsterModel.xcdatamodel */,
+			);
+			currentVersion = E304C57E1EB5775D009DF605 /* MonsterModel.xcdatamodel */;
+			path = MonsterModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E36108861E95ED0700B28F03 /* Project object */;
 }

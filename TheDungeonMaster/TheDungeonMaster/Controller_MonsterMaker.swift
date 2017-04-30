@@ -35,7 +35,9 @@ class MonsterMakerViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var SaveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(MonsterMakerViewController.Save))
     
-    var delegate: MonsterMakerDelegate? = nil
+    weak var delegate: MonsterMakerDelegate?
+    
+    var loadedMonster: Monster?
     
     var activeTextField = UITextField()
     
@@ -51,6 +53,26 @@ class MonsterMakerViewController: UIViewController, UITextFieldDelegate {
         MonsterInt.delegate = self
         MonsterWis.delegate = self
         MonsterChr.delegate = self
+        
+        if (loadedMonster != nil) {
+            MonsterNameField.text = loadedMonster!._Name
+            MonsterHP.text = String(describing: loadedMonster!._HP)
+            MonsterAC.text = String(describing: loadedMonster!._AC)
+            MonsterProficiency.text = String(describing: loadedMonster!._Prof)
+            MonsterStr.text = String(describing: loadedMonster!._Str)
+            MonsterDex.text = String(describing: loadedMonster!._Dex)
+            MonsterCon.text = String(describing: loadedMonster!._Con)
+            MonsterInt.text = String(describing: loadedMonster!._Int)
+            MonsterWis.text = String(describing: loadedMonster!._Wis)
+            MonsterChr.text = String(describing: loadedMonster!._Chr)
+            
+            MonsterStrSave.isOn = (loadedMonster?._Saves[0])!
+            MonsterDexSave.isOn = (loadedMonster?._Saves[1])!
+            MonsterConSave.isOn = (loadedMonster?._Saves[2])!
+            MonsterIntSave.isOn = (loadedMonster?._Saves[3])!
+            MonsterWisSave.isOn = (loadedMonster?._Saves[4])!
+            MonsterChrSave.isOn = (loadedMonster?._Saves[5])!
+        }
         
         SaveButton?.action = #selector(MonsterMakerViewController.Save)
         
@@ -118,6 +140,22 @@ class MonsterMakerViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in print("Saved!")}))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func MonsterToDictionary(m: Monster) -> NSArray {
+        var MonsterArray: Array<Any> = Array<Any>()
+        MonsterArray.append(m._Name)
+        MonsterArray.append(m._HP)
+        MonsterArray.append(m._AC)
+        MonsterArray.append(m._Prof)
+        MonsterArray.append(m._Str)
+        MonsterArray.append(m._Dex)
+        MonsterArray.append(m._Con)
+        MonsterArray.append(m._Int)
+        MonsterArray.append(m._Wis)
+        MonsterArray.append(m._Chr)
+        MonsterArray.append(m._Saves)
+        return NSArray(array: MonsterArray, copyItems: true)
     }
     
     func Done() {
