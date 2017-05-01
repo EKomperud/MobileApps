@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zhY-SH-LU1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zhY-SH-LU1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CUg-rw-n8B" id="u7h-uW-h8Q">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -41,7 +41,7 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ir9-bt-iYN" id="gZo-ei-NXs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Chn-TB-VNm">
@@ -254,6 +254,14 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="C3a-6X-rvM">
                                 <rect key="frame" x="311" y="466" width="51" height="31"/>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go8-ic-vE5">
+                                <rect key="frame" x="241" y="505" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Choose Portrait"/>
+                                <connections>
+                                    <action selector="PickImage" destination="6yL-Zb-lH3" eventType="touchUpInside" id="3aW-Gg-qod"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -314,6 +322,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ImagePickButton" destination="go8-ic-vE5" id="iup-FO-onH"/>
                         <outlet property="MonsterAC" destination="rgU-IA-kaN" id="JEI-f6-VOt"/>
                         <outlet property="MonsterChr" destination="6A2-bJ-Vtq" id="TJd-xw-wdc"/>
                         <outlet property="MonsterChrSave" destination="C3a-6X-rvM" id="WzE-MG-23z"/>
@@ -325,6 +334,7 @@
                         <outlet property="MonsterInt" destination="SYn-UX-b1a" id="j7w-cg-Jm1"/>
                         <outlet property="MonsterIntSave" destination="kCm-xH-Yvy" id="Udq-Lt-hb5"/>
                         <outlet property="MonsterNameField" destination="8OG-JZ-zRD" id="Lm7-my-VPh"/>
+                        <outlet property="MonsterPortrait" destination="R1B-5T-3Ms" id="8er-nr-rTQ"/>
                         <outlet property="MonsterProficiency" destination="nse-NJ-dAk" id="WE3-43-EY9"/>
                         <outlet property="MonsterStr" destination="Wph-eY-RLf" id="4Xz-ta-npv"/>
                         <outlet property="MonsterStrSave" destination="x3J-9c-FXr" id="0LM-fa-fij"/>
@@ -348,12 +358,61 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TNe-jU-Vsh"/>
+                        <segue destination="8B0-CN-eB6" kind="relationship" relationship="rootViewController" id="1dy-CG-N6l"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sB-aq-bNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="98" y="96"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="BfE-Do-Grn">
+            <objects>
+                <viewController id="8B0-CN-eB6" customClass="MapViewController" customModule="TheDungeonMaster" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Ng-PX-hE4"/>
+                        <viewControllerLayoutGuide type="bottom" id="vYq-Ie-Gdp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yAM-av-s33">
+                        <rect key="frame" x="0.0" y="64" width="750" height="1270"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKa-DM-wkb">
+                                <rect key="frame" x="0.0" y="0.0" width="750" height="1270"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ke3-0m-Lgr" customClass="MapView" customModule="TheDungeonMaster" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="750" id="cUJ-ra-Fb9"/>
+                                            <constraint firstAttribute="height" constant="1334" id="kHp-zk-EpO"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ke3-0m-Lgr" secondAttribute="bottom" id="Lkw-9Q-e8C"/>
+                                    <constraint firstItem="ke3-0m-Lgr" firstAttribute="top" secondItem="jKa-DM-wkb" secondAttribute="top" id="W7p-lw-PeE"/>
+                                    <constraint firstItem="ke3-0m-Lgr" firstAttribute="leading" secondItem="jKa-DM-wkb" secondAttribute="leading" id="igb-n3-XsO"/>
+                                    <constraint firstAttribute="trailing" secondItem="ke3-0m-Lgr" secondAttribute="trailing" id="yQ4-tp-hkt"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jKa-DM-wkb" secondAttribute="trailing" id="GDo-Yt-QfL"/>
+                            <constraint firstItem="jKa-DM-wkb" firstAttribute="leading" secondItem="yAM-av-s33" secondAttribute="leading" id="VLF-Ub-1hM"/>
+                            <constraint firstItem="jKa-DM-wkb" firstAttribute="top" secondItem="7Ng-PX-hE4" secondAttribute="bottom" id="t0L-sP-fOd"/>
+                            <constraint firstItem="vYq-Ie-Gdp" firstAttribute="top" secondItem="jKa-DM-wkb" secondAttribute="bottom" id="tQJ-WT-KVN"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="bqd-0L-SSW"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="750" height="1334"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K1j-Ac-G3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="810" y="1105"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

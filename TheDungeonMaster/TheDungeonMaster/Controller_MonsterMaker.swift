@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import PhotosUI
 
 protocol MonsterMakerDelegate: class {
     func SaveToManager(monster: Monster)
 }
 
-class MonsterMakerViewController: UIViewController, UITextFieldDelegate {
+class MonsterMakerViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var MonsterNameField: UITextField!
     @IBOutlet weak var MonsterHP: UITextField!
@@ -32,6 +33,10 @@ class MonsterMakerViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var MonsterIntSave: UISwitch!
     @IBOutlet weak var MonsterWisSave: UISwitch!
     @IBOutlet weak var MonsterChrSave: UISwitch!
+    
+    @IBOutlet weak var MonsterPortrait: UIImageView!
+    @IBOutlet weak var ImagePickButton: UIButton!
+    var ImagePicker = UIImagePickerController()
     
     @IBOutlet weak var SaveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(MonsterMakerViewController.Save))
     
@@ -125,7 +130,7 @@ class MonsterMakerViewController: UIViewController, UITextFieldDelegate {
         MonsterChr.inputAccessoryView = toolbar
     }
     
-    @ IBAction func Save() {
+    @IBAction func Save() {
         if (MonsterNameField.text != "") {
             let alert: UIAlertController = UIAlertController(title: "Saved!", message: "", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in print("Saved!")}))
@@ -140,6 +145,70 @@ class MonsterMakerViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in print("Saved!")}))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func PickImage() {
+//        let photos = PHPhotoLibrary.authorizationStatus()
+//        if photos == .notDetermined || photos == .denied
+//        {
+//            PHPhotoLibrary.requestAuthorization({status in
+//                if status == .authorized
+//                {
+//                    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+//                    {
+//                        self.ImagePicker.delegate = self
+//                        self.ImagePicker.sourceType = .photoLibrary
+//                        self.ImagePicker.allowsEditing = false
+//                        
+//                        self.present(self.ImagePicker, animated: true, completion: nil)
+//                    }
+//                }
+//                else
+//                {
+//                
+//                }
+//            })
+//        }
+//        else if photos == .authorized
+//        {
+//            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+//            {
+//                self.ImagePicker.delegate = self
+//                self.ImagePicker.sourceType = .photoLibrary
+//                self.ImagePicker.allowsEditing = false
+//                
+//                self.present(self.ImagePicker, animated: true, completion: nil)
+//            }
+//        }
+        if PHPhotoLibrary.authorizationStatus() != .authorized
+        {
+            PHPhotoLibrary.requestAuthorization({(status:PHAuthorizationStatus) in
+                switch status
+                {
+                case .authorized: break
+                case .denied: return
+                default: return
+                }
+            })
+            
+        }
+        self.ImagePicker.delegate = self
+        self.ImagePicker.sourceType = .photoLibrary
+        self.ImagePicker.allowsEditing = false
+        
+        self.present(self.ImagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let tempImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            MonsterPortrait.image = tempImage
+        }
+        else
+        {
+            // Error
+        }
+        self.dismiss(animated: true, completion: { () -> Void in })
     }
     
     func MonsterToDictionary(m: Monster) -> NSArray {

@@ -15,6 +15,8 @@
 		E361089C1E95ED0700B28F03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E361089A1E95ED0700B28F03 /* LaunchScreen.storyboard */; };
 		E36108A41E95ED6700B28F03 /* Model_MonsterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */; };
 		E3A89D701E9F16B700F1EAC6 /* Controller_MonsterMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */; };
+		E3FC82DD1EB6B58000B55152 /* Controller_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC82DC1EB6B58000B55152 /* Controller_Map.swift */; };
+		E3FC82DF1EB6B5E100B55152 /* View_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC82DE1EB6B5E100B55152 /* View_Map.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		E361089D1E95ED0700B28F03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model_MonsterManager.swift; sourceTree = "<group>"; };
 		E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller_MonsterMaker.swift; sourceTree = "<group>"; };
+		E3FC82DC1EB6B58000B55152 /* Controller_Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller_Map.swift; sourceTree = "<group>"; };
+		E3FC82DE1EB6B5E100B55152 /* View_Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View_Map.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +69,12 @@
 				E361089A1E95ED0700B28F03 /* LaunchScreen.storyboard */,
 				E361089D1E95ED0700B28F03 /* Info.plist */,
 				E36108911E95ED0700B28F03 /* AppDelegate.swift */,
+				E3FC82DC1EB6B58000B55152 /* Controller_Map.swift */,
 				E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */,
 				E36108931E95ED0700B28F03 /* Controller_MonsterManager.swift */,
 				E304C57D1EB5775D009DF605 /* MonsterModel.xcdatamodeld */,
 				E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */,
+				E3FC82DE1EB6B5E100B55152 /* View_Map.swift */,
 			);
 			path = TheDungeonMaster;
 			sourceTree = "<group>";
@@ -147,6 +153,8 @@
 			files = (
 				E36108941E95ED0700B28F03 /* Controller_MonsterManager.swift in Sources */,
 				E36108A41E95ED6700B28F03 /* Model_MonsterManager.swift in Sources */,
+				E3FC82DD1EB6B58000B55152 /* Controller_Map.swift in Sources */,
+				E3FC82DF1EB6B5E100B55152 /* View_Map.swift in Sources */,
 				E304C57F1EB5775D009DF605 /* MonsterModel.xcdatamodeld in Sources */,
 				E36108921E95ED0700B28F03 /* AppDelegate.swift in Sources */,
 				E3A89D701E9F16B700F1EAC6 /* Controller_MonsterMaker.swift in Sources */,
