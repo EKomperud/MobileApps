@@ -10,14 +10,16 @@ import UIKit
 
 class MapView: UIView {
     
-    var mapWidth: Float = 750.0
-    var mapHeight: Float = 1334.0
+    var mapWidth: Double = 375.0
+    var mapHeight: Double = 603.0
     
     override func draw(_ rect: CGRect) {
         DrawGrid()
     }
     
     func DrawGrid() {
+        self.frame = CGRect(x: 0.0, y: 0.0, width: mapWidth, height: mapHeight)
+        
         let context: CGContext = UIGraphicsGetCurrentContext()!
         
         context.setStrokeColor(UIColor.lightGray.cgColor)
@@ -25,8 +27,8 @@ class MapView: UIView {
         context.setLineJoin(.miter)
         context.setLineWidth(1.0)
         
-        var w: Float = 100
-        var h: Float = 100
+        var w: Double = 0.0
+        var h: Double = 0.0
         while w < mapWidth
         {
             context.move(to: CGPoint(x: CGFloat(w), y: CGFloat(0.0)))
@@ -39,10 +41,8 @@ class MapView: UIView {
             context.addLine(to: CGPoint(x: CGFloat(mapWidth), y: CGFloat(h)))
             h += 100
         }
-        
-//        context.move(to: CGPoint(x: 100, y: 1.0))
-//        context.addLine(to: CGPoint(x: 100, y: 250))
 
         context.drawPath(using: .stroke)
     }
+    
 }
