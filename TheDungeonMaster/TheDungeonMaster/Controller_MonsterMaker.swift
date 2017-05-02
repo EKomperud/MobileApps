@@ -13,7 +13,7 @@ protocol MonsterMakerDelegate: class {
     func SaveToManager(monster: Monster)
 }
 
-class MonsterMakerViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate {
+class MonsterMakerViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, BrushSelectorDelegate {
     
     @IBOutlet weak var MonsterNameField: UITextField!
     @IBOutlet weak var MonsterHP: UITextField!
@@ -34,9 +34,15 @@ class MonsterMakerViewController: UIViewController, UINavigationControllerDelega
     @IBOutlet weak var MonsterWisSave: UISwitch!
     @IBOutlet weak var MonsterChrSave: UISwitch!
     
-    @IBOutlet weak var MonsterPortrait: UIImageView!
-    @IBOutlet weak var ImagePickButton: UIButton!
-    var ImagePicker = UIImagePickerController()
+    weak var MonImage: UIImage?
+    @IBOutlet weak var MonImageView: UIImageView?
+    @IBOutlet weak var MonsterPortrait: PaintingView!
+    @IBOutlet weak var PortraitSave: UIButton!
+    @IBOutlet weak var PortraitClear: UIButton!
+    @IBOutlet weak var PortraitBrush: UIButton!
+    var brushSelector = BrushSelectorViewController()
+    // Brush options
+    var color = UIColor.black.cgColor
     
     @IBOutlet weak var SaveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(MonsterMakerViewController.Save))
     
@@ -77,9 +83,20 @@ class MonsterMakerViewController: UIViewController, UINavigationControllerDelega
             MonsterIntSave.isOn = (loadedMonster?._Saves[3])!
             MonsterWisSave.isOn = (loadedMonster?._Saves[4])!
             MonsterChrSave.isOn = (loadedMonster?._Saves[5])!
+            
+            MonImage = loadedMonster?._Portrait
+            if MonImage == nil {
+                MonImage = UIImage(named: "Default.png")
+            }
+            MonImageView?.image = MonImage
+        }
+        else {
+            MonImage = UIImage(named: "Default.png")
+            MonImageView?.image = MonImage
         }
         
         SaveButton?.action = #selector(MonsterMakerViewController.Save)
+        brushSelector.delegate = self
         
         AddDoneButton()
     }
@@ -137,6 +154,7 @@ class MonsterMakerViewController: UIViewController, UINavigationControllerDelega
             let m: Monster = Monster(name: MonsterNameField.text!, hp: Int(MonsterHP.text!)!, ac: Int(MonsterAC.text!)!, prof: Int(MonsterProficiency.text!)!)
             m.Stats(str: Int(MonsterStr.text!)!, dex: Int(MonsterDex.text!)!, con: Int(MonsterCon.text!)!, int: Int(MonsterInt.text!)!, wis: Int(MonsterWis.text!)!, chr: Int(MonsterChr.text!)!)
             m.Saves(str: MonsterStrSave.isOn, dex: MonsterDexSave.isOn, con: MonsterConSave.isOn, int: MonsterIntSave.isOn, wis: MonsterWisSave.isOn, chr: MonsterChrSave.isOn)
+            m.Portrait(p: MonImage!)
             delegate?.SaveToManager(monster: m)
             self.present(alert, animated: true, completion: nil)
         }
@@ -147,7 +165,47 @@ class MonsterMakerViewController: UIViewController, UINavigationControllerDelega
         }
     }
     
-    @IBAction func PickImage() {
+    @IBAction func SavePortrait() {
+        MonImage = MonsterPortrait.SaveImage()
+        MonImageView?.image = MonImage
+    }
+    
+    @IBAction func ClearPortrait() {
+        MonsterPortrait.Clear()
+    }
+    
+    @IBAction func BrushSelector() {
+        navigationController?.show(brushSelector, sender: self)
+    }
+    
+    func brushSelected(brushSelector: BrushSelectorViewController, withColor color: CGColor, andWidth width: Float, andLineJoin lj: CGLineJoin, andAlsoLineCap lc: CGLineCap) {
+        self.color = color
+        MonsterPortrait.color = self.color
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? MapViewController {
+            let m: Monster = Monster(name: MonsterNameField.text!, hp: Int(MonsterHP.text!)!, ac: Int(MonsterAC.text!)!, prof: Int(MonsterProficiency.text!)!)
+            m.Stats(str: Int(MonsterStr.text!)!, dex: Int(MonsterDex.text!)!, con: Int(MonsterCon.text!)!, int: Int(MonsterInt.text!)!, wis: Int(MonsterWis.text!)!, chr: Int(MonsterChr.text!)!)
+            m.Saves(str: MonsterStrSave.isOn, dex: MonsterDexSave.isOn, con: MonsterConSave.isOn, int: MonsterIntSave.isOn, wis: MonsterWisSave.isOn, chr: MonsterChrSave.isOn)
+            m.Portrait(p: MonImage!)
+            
+            viewController.chooseMonster(monster: m)
+        }
+    }
+    
+    @IBAction func PickForMap() {
+        if MonsterNameField.text! != "" {
+            self.performSegue(withIdentifier: "unwindToMap", sender: self)
+        }
+        else {
+            let alert: UIAlertController = UIAlertController(title: "You must add a Monster name before picking", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in print("Saved!")}))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+//    @IBAction func PickImage() {
 //        let photos = PHPhotoLibrary.authorizationStatus()
 //        if photos == .notDetermined || photos == .denied
 //        {
@@ -180,36 +238,36 @@ class MonsterMakerViewController: UIViewController, UINavigationControllerDelega
 //                self.present(self.ImagePicker, animated: true, completion: nil)
 //            }
 //        }
-        if PHPhotoLibrary.authorizationStatus() != .authorized
-        {
-            PHPhotoLibrary.requestAuthorization({(status:PHAuthorizationStatus) in
-                switch status
-                {
-                case .authorized: break
-                case .denied: return
-                default: return
-                }
-            })
-            
-        }
-        self.ImagePicker.delegate = self
-        self.ImagePicker.sourceType = .photoLibrary
-        self.ImagePicker.allowsEditing = false
-        
-        self.present(self.ImagePicker, animated: true, completion: nil)
-    }
+//        if PHPhotoLibrary.authorizationStatus() != .authorized
+//        {
+//            PHPhotoLibrary.requestAuthorization({(status:PHAuthorizationStatus) in
+//                switch status
+//                {
+//                case .authorized: break
+//                case .denied: return
+//                default: return
+//                }
+//            })
+//            
+//        }
+//        self.ImagePicker.delegate = self
+//        self.ImagePicker.sourceType = .photoLibrary
+//        self.ImagePicker.allowsEditing = false
+//        
+//        self.present(self.ImagePicker, animated: true, completion: nil)
+//    }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let tempImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        {
-            MonsterPortrait.image = tempImage
-        }
-        else
-        {
-            // Error
-        }
-        self.dismiss(animated: true, completion: { () -> Void in })
-    }
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        if let tempImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+//        {
+//            MonsterPortrait.image = tempImage
+//        }
+//        else
+//        {
+//            // Error
+//        }
+//        self.dismiss(animated: true, completion: { () -> Void in })
+//    }
     
     func MonsterToDictionary(m: Monster) -> NSArray {
         var MonsterArray: Array<Any> = Array<Any>()

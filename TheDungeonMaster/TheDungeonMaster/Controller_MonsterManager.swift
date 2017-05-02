@@ -26,6 +26,9 @@ class MonsterManagerViewController: UIViewController, MonsterMakerDelegate {
     // CoreData context
     var context: NSManagedObjectContext? = nil
     
+    // Picker or Manager?
+    var manager = true
+    
     // The table view
     @IBOutlet var monsterTable: UITableView?
     
@@ -42,6 +45,7 @@ class MonsterManagerViewController: UIViewController, MonsterMakerDelegate {
             let Aboleth = Monster(name: "Aboleth", hp: 135, ac: 17, prof: 4)
             Aboleth.Stats(str: 21, dex: 9, con: 15, int: 18, wis: 15, chr: 18)
             Aboleth.Saves(str: false, dex: false, con: true, int: true, wis: true, chr: false)
+            Aboleth.Portrait(p: UIImage(named: "Aboleth.png")!)
             _Monsters.updateValue(Aboleth, forKey: "Aboleth")
             
             if saveMonsterToData(monster: Aboleth)
@@ -84,7 +88,17 @@ class MonsterManagerViewController: UIViewController, MonsterMakerDelegate {
                 viewController.loadedMonster = TempMonster
             }
             viewController.delegate = self
-
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !manager {
+            let indexPath: IndexPath = monsterTable!.indexPathForSelectedRow!
+            let cell: UITableViewCell = monsterTable!.cellForRow(at: indexPath)!
+            if (cell.reuseIdentifier == "Monster") {
+                TempMonster = _Monsters[MonsterNames[indexPath.item]]!
+            }
+            self.performSegue(withIdentifier: "unwindToMap", sender: self)
         }
     }
     
@@ -97,7 +111,12 @@ extension MonsterManagerViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return _Monsters.count + 1
+        if manager {
+            return _Monsters.count + 1
+        }
+        else {
+            return _Monsters.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,6 +149,7 @@ extension MonsterManagerViewController: UITableViewDataSource, UITableViewDelega
         monsterData.setValue(monster._Saves[3], forKey: "saveInt")
         monsterData.setValue(monster._Saves[4], forKey: "saveWis")
         monsterData.setValue(monster._Saves[5], forKey: "saveChr")
+        monsterData.setValue(monster.PortraitToPNG(), forKey: "portrait")
         
         do
         {
@@ -155,6 +175,7 @@ extension MonsterManagerViewController: UITableViewDataSource, UITableViewDelega
                     let monster = Monster(name: result.value(forKey: "name") as! String, hp: result.value(forKey: "hp") as! Int, ac: result.value(forKey: "ac") as! Int, prof: result.value(forKey: "proficiency") as! Int)
                     monster.Stats(str: result.value(forKey: "statStr") as! Int, dex: result.value(forKey: "statDex") as! Int, con: result.value(forKey: "statCon") as! Int, int: result.value(forKey: "statInt") as! Int, wis: result.value(forKey: "statWis") as! Int, chr: result.value(forKey: "statChr") as! Int)
                     monster.Saves(str: result.value(forKey: "saveStr") as! Bool, dex: result.value(forKey: "saveDex") as! Bool, con: result.value(forKey: "saveCon") as! Bool, int: result.value(forKey: "saveInt") as! Bool, wis: result.value(forKey: "saveWis") as! Bool, chr: result.value(forKey: "saveChr") as! Bool)
+                    monster.Portrait(p: monster.PNGToPortrait(d: result.value(forKey: "portrait") as! NSData))
                     _Monsters.updateValue(monster, forKey: monster._Name)
                 }
             }

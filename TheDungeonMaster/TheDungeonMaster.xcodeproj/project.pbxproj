@@ -14,6 +14,18 @@
 		E36108991E95ED0700B28F03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E36108981E95ED0700B28F03 /* Assets.xcassets */; };
 		E361089C1E95ED0700B28F03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E361089A1E95ED0700B28F03 /* LaunchScreen.storyboard */; };
 		E36108A41E95ED6700B28F03 /* Model_MonsterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */; };
+		E3622B641EB7FF11006B79D6 /* PaintingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B631EB7FF11006B79D6 /* PaintingView.swift */; };
+		E3622B661EB7FFED006B79D6 /* PaintingCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B651EB7FFED006B79D6 /* PaintingCollection.swift */; };
+		E3622B701EB80AF9006B79D6 /* BlueSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B671EB80AF9006B79D6 /* BlueSelectorView.swift */; };
+		E3622B711EB80AF9006B79D6 /* BrushCapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B681EB80AF9006B79D6 /* BrushCapView.swift */; };
+		E3622B721EB80AF9006B79D6 /* BrushExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B691EB80AF9006B79D6 /* BrushExampleView.swift */; };
+		E3622B731EB80AF9006B79D6 /* BrushJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B6A1EB80AF9006B79D6 /* BrushJoinView.swift */; };
+		E3622B741EB80AF9006B79D6 /* BrushSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B6B1EB80AF9006B79D6 /* BrushSelectorView.swift */; };
+		E3622B751EB80AF9006B79D6 /* BrushSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B6C1EB80AF9006B79D6 /* BrushSelectorViewController.swift */; };
+		E3622B761EB80AF9006B79D6 /* ColorSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B6D1EB80AF9006B79D6 /* ColorSelectorView.swift */; };
+		E3622B771EB80AF9006B79D6 /* GreenSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B6E1EB80AF9006B79D6 /* GreenSelectorView.swift */; };
+		E3622B781EB80AF9006B79D6 /* RedSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B6F1EB80AF9006B79D6 /* RedSelectorView.swift */; };
+		E3622B7A1EB82068006B79D6 /* MonsterToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3622B791EB82068006B79D6 /* MonsterToken.swift */; };
 		E3A89D701E9F16B700F1EAC6 /* Controller_MonsterMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */; };
 		E3FC82DD1EB6B58000B55152 /* Controller_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC82DC1EB6B58000B55152 /* Controller_Map.swift */; };
 		E3FC82DF1EB6B5E100B55152 /* View_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC82DE1EB6B5E100B55152 /* View_Map.swift */; };
@@ -29,6 +41,18 @@
 		E361089B1E95ED0700B28F03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E361089D1E95ED0700B28F03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model_MonsterManager.swift; sourceTree = "<group>"; };
+		E3622B631EB7FF11006B79D6 /* PaintingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingView.swift; sourceTree = "<group>"; };
+		E3622B651EB7FFED006B79D6 /* PaintingCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingCollection.swift; sourceTree = "<group>"; };
+		E3622B671EB80AF9006B79D6 /* BlueSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueSelectorView.swift; sourceTree = "<group>"; };
+		E3622B681EB80AF9006B79D6 /* BrushCapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushCapView.swift; sourceTree = "<group>"; };
+		E3622B691EB80AF9006B79D6 /* BrushExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushExampleView.swift; sourceTree = "<group>"; };
+		E3622B6A1EB80AF9006B79D6 /* BrushJoinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushJoinView.swift; sourceTree = "<group>"; };
+		E3622B6B1EB80AF9006B79D6 /* BrushSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushSelectorView.swift; sourceTree = "<group>"; };
+		E3622B6C1EB80AF9006B79D6 /* BrushSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushSelectorViewController.swift; sourceTree = "<group>"; };
+		E3622B6D1EB80AF9006B79D6 /* ColorSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSelectorView.swift; sourceTree = "<group>"; };
+		E3622B6E1EB80AF9006B79D6 /* GreenSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreenSelectorView.swift; sourceTree = "<group>"; };
+		E3622B6F1EB80AF9006B79D6 /* RedSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedSelectorView.swift; sourceTree = "<group>"; };
+		E3622B791EB82068006B79D6 /* MonsterToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterToken.swift; sourceTree = "<group>"; };
 		E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller_MonsterMaker.swift; sourceTree = "<group>"; };
 		E3FC82DC1EB6B58000B55152 /* Controller_Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller_Map.swift; sourceTree = "<group>"; };
 		E3FC82DE1EB6B5E100B55152 /* View_Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View_Map.swift; sourceTree = "<group>"; };
@@ -71,10 +95,22 @@
 				E36108911E95ED0700B28F03 /* AppDelegate.swift */,
 				E3FC82DC1EB6B58000B55152 /* Controller_Map.swift */,
 				E3A89D6F1E9F16B700F1EAC6 /* Controller_MonsterMaker.swift */,
+				E3622B671EB80AF9006B79D6 /* BlueSelectorView.swift */,
+				E3622B681EB80AF9006B79D6 /* BrushCapView.swift */,
+				E3622B691EB80AF9006B79D6 /* BrushExampleView.swift */,
+				E3622B6A1EB80AF9006B79D6 /* BrushJoinView.swift */,
+				E3622B6B1EB80AF9006B79D6 /* BrushSelectorView.swift */,
+				E3622B6C1EB80AF9006B79D6 /* BrushSelectorViewController.swift */,
+				E3622B6D1EB80AF9006B79D6 /* ColorSelectorView.swift */,
+				E3622B6E1EB80AF9006B79D6 /* GreenSelectorView.swift */,
+				E3622B6F1EB80AF9006B79D6 /* RedSelectorView.swift */,
+				E3622B631EB7FF11006B79D6 /* PaintingView.swift */,
+				E3622B651EB7FFED006B79D6 /* PaintingCollection.swift */,
 				E36108931E95ED0700B28F03 /* Controller_MonsterManager.swift */,
 				E304C57D1EB5775D009DF605 /* MonsterModel.xcdatamodeld */,
 				E36108A31E95ED6700B28F03 /* Model_MonsterManager.swift */,
 				E3FC82DE1EB6B5E100B55152 /* View_Map.swift */,
+				E3622B791EB82068006B79D6 /* MonsterToken.swift */,
 			);
 			path = TheDungeonMaster;
 			sourceTree = "<group>";
@@ -152,12 +188,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				E36108941E95ED0700B28F03 /* Controller_MonsterManager.swift in Sources */,
+				E3622B781EB80AF9006B79D6 /* RedSelectorView.swift in Sources */,
 				E36108A41E95ED6700B28F03 /* Model_MonsterManager.swift in Sources */,
+				E3622B641EB7FF11006B79D6 /* PaintingView.swift in Sources */,
+				E3622B701EB80AF9006B79D6 /* BlueSelectorView.swift in Sources */,
+				E3622B731EB80AF9006B79D6 /* BrushJoinView.swift in Sources */,
+				E3622B721EB80AF9006B79D6 /* BrushExampleView.swift in Sources */,
+				E3622B711EB80AF9006B79D6 /* BrushCapView.swift in Sources */,
 				E3FC82DD1EB6B58000B55152 /* Controller_Map.swift in Sources */,
 				E3FC82DF1EB6B5E100B55152 /* View_Map.swift in Sources */,
 				E304C57F1EB5775D009DF605 /* MonsterModel.xcdatamodeld in Sources */,
 				E36108921E95ED0700B28F03 /* AppDelegate.swift in Sources */,
 				E3A89D701E9F16B700F1EAC6 /* Controller_MonsterMaker.swift in Sources */,
+				E3622B741EB80AF9006B79D6 /* BrushSelectorView.swift in Sources */,
+				E3622B761EB80AF9006B79D6 /* ColorSelectorView.swift in Sources */,
+				E3622B7A1EB82068006B79D6 /* MonsterToken.swift in Sources */,
+				E3622B661EB7FFED006B79D6 /* PaintingCollection.swift in Sources */,
+				E3622B771EB80AF9006B79D6 /* GreenSelectorView.swift in Sources */,
+				E3622B751EB80AF9006B79D6 /* BrushSelectorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

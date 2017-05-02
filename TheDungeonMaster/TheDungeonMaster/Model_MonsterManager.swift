@@ -6,7 +6,7 @@
 //  Copyright © 2017 cs4530. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Monster {
     var _Name: String
@@ -24,6 +24,8 @@ class Monster {
     
     var _Saves: Array = [false,false,false,false,false,false]
     
+    var _Portrait: UIImage?
+    
     init(name: String, hp: Int, ac: Int, prof: Int) {
         _Name = name; _HP = hp; _AC = ac; _Prof = prof
     }
@@ -39,6 +41,21 @@ class Monster {
         _Saves[3] = int
         _Saves[4] = wis
         _Saves[5] = chr
+    }
+    
+    func Portrait(p: UIImage) {
+        _Portrait = p
+    }
+    
+    func PortraitToPNG() -> NSData {
+        let image: NSData = UIImagePNGRepresentation(_Portrait!)! as NSData
+        return image
+    }
+
+    func PNGToPortrait(d: NSData) -> UIImage {
+        let portrait = UIImage(data: d as Data)
+        _Portrait = portrait
+        return portrait!
     }
     
     func GetSave(stat: String) -> Int {
